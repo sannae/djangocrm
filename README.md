@@ -6,8 +6,8 @@ A little project to create a CRM web application with [Django](https://www.djang
 * [Django](https://www.djangoproject.com/download/)
 
 ## Notes
-* The project structure is created with `py -m manage startproject`
-* Within the project, there may be several *apps*: each app structure is created with `py -m manage startapp`; in our case the main and only app is called `accounts`
+* The project structure is created with `py -m django startproject`
+* Within the project, there may be several *apps*: each app structure is created with `py -m django startapp`; in our case the main and only app is called `accounts`
 * The views of the app call the templates saved in `accounts/templates/accounts` (according to a Django's convention)
 * The templates use a combination of HTML/CSS/JS and Django's `{% block %}` syntax: this lets you modularize the code
 * The HTML/CSS/JS templates use [Bootstrap](https://getbootstrap.com/docs/5.1/getting-started/introduction/)
