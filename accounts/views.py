@@ -3,10 +3,9 @@ from django.http import HttpResponse
 
 # Our views, i.e. the rendered pages where the URLs will redirect
 
-# Create your views here.
-
+# To call your templates, you can use the django.shortcuts.render function.
 # Remember that you html templates needs to be stored in
-# /APPNAME/templates/APPNAME/
+#   /APPNAME/templates/APPNAME/
 # Because Django will automatically look for them there
 
 def home(request):

@@ -20,5 +20,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),    # Admin panel (pre-installed with Django)
-    path('', include('accounts.urls')),
+    path('', include('accounts.urls')), # Include all the URL paths in the accounts app
 ]
