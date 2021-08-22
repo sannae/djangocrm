@@ -1,5 +1,11 @@
 from django.contrib import admin
+# Import all models
+from .models import *
 
-# The admin panel!
+# The admin panel! Where you *register* your models
 
-# Register your models here.
+admin.site.register(Customer)
+admin.site.register(Product)
+admin.site.register(Order)
+
+
