@@ -15,6 +15,10 @@ A little project to create a CRM web application with [Django](https://www.djang
 ### About database and relationships
 * To initiate the database, run `py -m manage migrate`: the database's settings are in `SETTINGS.py` and SQLite3 is the default.
 * To run progressive migrations, edit your models then run `py -m manage makemigrations` to create your migration files (preparation files before actual migration) in `/APPNAME/migrations/`. Remember to register your models in the _admin_ panel to see them.
+* To retrieve data from the db, use [this reference guide](https://docs.djangoproject.com/en/2.2/ref/models/querysets):
+  1) Open your Django shell (`py -m manage shell`)
+  2) Import all your models (`from APPNAME.models import *`)
+  3) Specific tables are then available as objects with `TABLENAME.objects.all()` and other methods
 
 
 ## Usage

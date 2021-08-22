@@ -11,6 +11,12 @@ class Customer(models.Model):
     def __str__(self):
         return self.name
 
+class Tag(models.Model):
+    name = models.CharField(max_length=200, null=True)     # String
+
+    def __str__(self):
+        return self.name
+
 class Product(models.Model):
 
     # Values for category
@@ -22,9 +28,11 @@ class Product(models.Model):
     name = models.CharField(max_length=200, null=True)     # String
     price = models.FloatField(null=True)                    # Float
     category = models.CharField(max_length=200, null=True, choices=CATEGORY)     # String
-    description = models.CharField(max_length=200, null=True)     # String
+    description = models.CharField(max_length=200, null=True, blank=True)     # String, can be blank
     date_created = models.DateTimeField(auto_now_add=True)  # Timestamp
-
+    # Many to many relationship with Tag (a product can have many tags associated, the same tag can be associated to many products)
+    tag = models.ManyToManyField(Tag)
+ 
     def __str__(self):
         return self.name
 
@@ -37,10 +45,10 @@ class Order(models.Model):
         ('Delivered','Delivered')
     )
 
-    # customer = 
-    # product =
+    # Foreign key on the Customers table: set null if customer is deleted
+    customer = models.ForeignKey(Customer, null=True, on_delete = models.SET_NULL) 
+    # Foreign key on the Product table: set null if product is deleted
+    product = models.ForeignKey(Product, null=True, on_delete=models.SET_NULL)
+    # Other fields
     date_created = models.DateTimeField(auto_now_add=True)  # Timestamp
     status = models.CharField(max_length=200, null=True, choices=STATUS)     # String with dropdown choices
-
-    def __str__(self):
-        return self.name

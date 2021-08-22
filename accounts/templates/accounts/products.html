@@ -18,6 +18,17 @@
 							<th>Price</th>
 						</tr>
 						
+						<!-- Template tag for looping through products -->
+						<!-- The 'products' object was passed to the template in views.py via the products function -->
+						<!-- Each product is rendered as a table cell -->
+						{% for i in products %}
+						<tr>
+							<td>{{ i.name }}</td>
+							<td>{{ i.category }}</td>
+							<td>€ {{ i.price }}</td>
+						</tr>
+						{% endfor %}
+
 					</table>
 				</div>
 			</div>
