@@ -17,16 +17,19 @@
         <!-- Bootstrap's "card styling" -->
 		<div class="card card-body">
 			<!-- A button -->
-			<a class="btn btn-primary  btn-sm btn-block" href="">Create Customer</a>
+			<a class="btn btn-primary btn-sm btn-block" href="">Create Customer</a>
 			<table class="table table-sm">
 				<tr>
 					<!-- Headers -->
+					<th></th>					<!-- just spacing -->
 					<th>Customer</th>
 					<th>Phone</th>
 					
 					<!-- Dynamic tag loading from the customers dictionary passed by the view -->
 					{% for customer in customers %}
 					<tr>
+						<!-- href to the customer url, referencing to the customer id -->
+						<td><a href="{% url 'customer' customer.id %}" class="btn btn-sm btn-info">View</a></td>
 						<td>{{ customer.name }}</td>
 						<td>{{ customer.phone }}</td>
 					</tr>
@@ -58,12 +61,10 @@
 							<td>{{ order.product }}</td>
 							<td>{{ order.date_created}}</td>
 							<td>{{ order.status}}</td>
-							<td><a href="">Update</a></td>
-							<td><a href="">Delete</a></td>
+							<td><a class="btn btn-sm btn-info" href="">Update</a></td>
+							<td><a class="btn btn-sm btn-danger" href="">Delete</a></td>
 						</tr>
 					{% endfor %}
-
-
 
 				</tr>
 			</table>

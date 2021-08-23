@@ -18,7 +18,7 @@ def home(request):
     total_orders = orders.count()
     delivered_orders = orders.filter(status='Delivered').count()
     pending_orders = orders.filter(status='Pending').count()
-    # Create dictionary
+    # Context to be passed to the template
     context = {
         'orders':orders,
         'customers':customers,
@@ -35,5 +35,16 @@ def products(request):
     # The products dictionary will be passed to any function in the corresponding template
     return render(request, 'accounts/products.html', {'products':products})
 
-def customer(request):
-    return render(request, 'accounts/customer.html')
+def customer(request, pk_test):
+    # Primary key
+    customer = Customer.objects.get(id=pk_test)
+    # Get all the selected customer's orders
+    orders = customer.order_set.all()
+    customer_total_orders = customer.order_set.count()
+    # Context to be passed to the template
+    context = {
+        'customer':customer,
+        'orders':orders,
+        'customer_total_orders':customer_total_orders        
+    }
+    return render(request, 'accounts/customer.html', context)

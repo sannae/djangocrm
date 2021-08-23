@@ -5,6 +5,7 @@ from django.db import models
 class Customer(models.Model):
     name = models.CharField(max_length=200, null=True)     # String
     phone = models.CharField(max_length=200, null=True)     # String
+    address = models.CharField(max_length=200, null=True)   # String
     email = models.CharField(max_length=200, null=True)     # String
     date_created = models.DateTimeField(auto_now_add=True)  # Timestamp
 
