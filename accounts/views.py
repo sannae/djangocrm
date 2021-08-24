@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import *
+from .forms import OrderForm
 
 # Our views, i.e. the rendered pages where the URLs will redirect
 
@@ -48,3 +49,59 @@ def customer(request, pk_test):
         'customer_total_orders':customer_total_orders        
     }
     return render(request, 'accounts/customer.html', context)
+
+def createOrder(request):
+
+    # Form from forms.py
+    form = OrderForm()
+    if request.method == "POST":
+        # print('Printing POST:', request.POST) ## Testing
+        form = OrderForm(request.POST)
+        # Save a new instance in the database when submitting
+        if form.is_valid():
+            form.save()
+            # Redirect to dashboard
+            return redirect('/')
+
+    # Context to be passed to the template
+    context = {
+        'form':form        
+    }
+    return render(request, 'accounts/order_form.html', context)
+
+def updateOrder(request, pk):
+
+    # Get the order with the corresponding primary key 
+    order = Order.objects.get(id=pk)
+    # Pre-fill the form with the selected order
+    form = OrderForm(instance=order)
+    # Save the same instance when submitting
+    if request.method == "POST":
+        form = OrderForm(request.POST, instance=order)
+        # Save the form data in the database
+        if form.is_valid():
+            form.save()
+            # Redirect to dashboard
+            return redirect('/')
+    # Context to be passed to the template
+    context = {
+        'form':form        
+    }
+    return render(request, 'accounts/order_form.html', context)
+
+def deleteOrder(request, pk):
+
+    # Order to be deleted
+    order = Order.objects.get(id=pk)
+
+    # Actual deletion
+    if request.method == "POST":
+        order.delete()
+        # Go back to home
+        return redirect('/')
+
+    context = {
+        'order':order 
+    }
+
+    return render(request, 'accounts/delete.html', context)
