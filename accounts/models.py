@@ -22,8 +22,8 @@ class Product(models.Model):
 
     # Values for category
     CATEGORY = (
-        ('Indoor','Indoor'),
-        ('Outdoor','Outdoor')
+        ('Hardware','Hardware'),
+        ('Software','Software'),
     )
 
     name = models.CharField(max_length=200, null=True)     # String
