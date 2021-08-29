@@ -4,8 +4,8 @@ from django.db import models
 
 class Customer(models.Model):
     name = models.CharField(max_length=200, null=True)     # String
-    phone = models.CharField(max_length=200, null=True)     # String
-    address = models.CharField(max_length=200, null=True)   # String
+    phone = models.CharField(max_length=200, null=True, blank=True)     # String
+    address = models.CharField(max_length=200, null=True, blank=True)   # String
     email = models.CharField(max_length=200, null=True)     # String
     date_created = models.DateTimeField(auto_now_add=True)  # Timestamp
 
@@ -22,8 +22,8 @@ class Product(models.Model):
 
     # Values for category
     CATEGORY = (
-        ('Indoor','Indoor'),
-        ('Outdoor','Outdoor')
+        ('Hardware','Hardware'),
+        ('Software','Software'),
     )
 
     name = models.CharField(max_length=200, null=True)     # String
