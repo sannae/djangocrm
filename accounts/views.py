@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.forms import inlineformset_factory
 from .models import *
 from .forms import OrderForm
 from .filters import OrderFilter
@@ -57,24 +58,28 @@ def customer(request, pk_test):
 
 def createOrder(request, pk):
 
-    # Customer
+    # Form set (use either 'form' or 'formset' properties)
+    OrderFormSet = inlineformset_factory(Customer, Order, fields=('product','status'), extra=5)
     customer = Customer.objects.get(id=pk)
+    # No initial objects in the formset
+    formSet = OrderFormSet(queryset = Order.objects.none(), instance=customer)
 
     # Form from forms.py
     # Initial instance of the customer is the belongin customer itself
-    form = OrderForm(initial={'customer':customer})
+    # form = OrderForm(initial={'customer':customer})
     if request.method == "POST":
         # print('Printing POST:', request.POST) ## Testing
-        form = OrderForm(request.POST)
+        # form = OrderForm(request.POST)
+        formSet = OrderFormSet(request.POST, instance=customer)
         # Save a new instance in the database when submitting
-        if form.is_valid():
-            form.save()
+        if formSet.is_valid():
+            formSet.save()
             # Redirect to dashboard
             return redirect('/')
 
     # Context to be passed to the template
     context = {
-        'form':form        
+        'formSet':formSet      
     }
     return render(request, 'accounts/order_form.html', context)
 

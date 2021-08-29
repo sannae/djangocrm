@@ -42,6 +42,8 @@ All the required Python packages are listed in `requirements.txt`, run `pip inst
 ## Usage
 * To debug the application with live rendering, run `py -m manage runserver` from the root folder and browse to *http://localhost:8000*
 
+## **Definitely** review:
+* [Forms](https://docs.djangoproject.com/en/3.2/topics/forms/) and [Formsets](https://docs.djangoproject.com/en/3.2/topics/forms/formsets/)
 
 ## Next
 * :whale: [Dockerize the project](https://docs.docker.com/samples/django/)!
