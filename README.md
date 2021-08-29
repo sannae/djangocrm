@@ -22,6 +22,13 @@ All the required Python packages are listed in `requirements.txt`, run `pip inst
   1) Update the model in `models.py` (if needed)
   2) Create or update the corresponding view in `views.py`
   3) If the new feature opens a new page, create the new html page in `templates/` and add it to `urls.py`
+* :warning: Do _not_ comment Django template tags with usual HTML comments, as described [here](https://stackoverflow.com/questions/62793267/reverse-for-create-order-with-no-arguments-not-found)!! 
+```html
+<!-- this is the usual HTML comment -->
+<!-- {% This is a Django tag %} -->
+<!-- {#% This is a commented Django tag %#} -->
+```
+
 ### About database and relationships
 * To initiate the database, run `py -m manage migrate`: the database's settings are in `SETTINGS.py` and SQLite3 is the default.
 * To run progressive migrations, edit your models then run `py -m manage makemigrations` to create your migration files (preparation files before actual migration) in `/APPNAME/migrations/`. Remember to register your models in the _admin_ panel to see them.

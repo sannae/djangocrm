@@ -57,8 +57,12 @@ def customer(request, pk_test):
 
 def createOrder(request, pk):
 
+    # Customer
+    customer = Customer.objects.get(id=pk)
+
     # Form from forms.py
-    form = OrderForm()
+    # Initial instance of the customer is the belongin customer itself
+    form = OrderForm(initial={'customer':customer})
     if request.method == "POST":
         # print('Printing POST:', request.POST) ## Testing
         form = OrderForm(request.POST)
