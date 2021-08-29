@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import *
 from .forms import OrderForm
+from .filters import OrderFilter
 
 # Our views, i.e. the rendered pages where the URLs will redirect
 
@@ -42,15 +43,19 @@ def customer(request, pk_test):
     # Get all the selected customer's orders
     orders = customer.order_set.all()
     customer_total_orders = customer.order_set.count()
+    # reset the orders variable wit the filter, depending on the GET request
+    myFilter = OrderFilter(request.GET, queryset=orders)
+    orders = myFilter.qs
     # Context to be passed to the template
     context = {
         'customer':customer,
         'orders':orders,
-        'customer_total_orders':customer_total_orders        
+        'customer_total_orders':customer_total_orders,
+        'myFilter':myFilter     
     }
     return render(request, 'accounts/customer.html', context)
 
-def createOrder(request):
+def createOrder(request, pk):
 
     # Form from forms.py
     form = OrderForm()

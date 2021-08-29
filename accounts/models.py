@@ -53,6 +53,7 @@ class Order(models.Model):
     # Other fields
     date_created = models.DateTimeField(auto_now_add=True)  # Timestamp
     status = models.CharField(max_length=200, null=True, choices=STATUS)     # String with dropdown choices
+    notes = models.CharField(max_length=200, null=True)
 
     # Return the corresponding product's name
     def __str__(self):
