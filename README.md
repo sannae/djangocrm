@@ -9,7 +9,7 @@ The CRM is a web application that lets you:
 ## Requirements
 * [Python](https://www.python.org/downloads/)
 * [Django](https://www.djangoproject.com/download/)
-All the required Python packages are listed in `requirements.txt`, run `pip install -r requirements.txt` to load them in your environment.
+All the required Python packages are listed in `requirements.txt` (to be updatable with `pip freeze > requirements.txt`), run `pip install -r requirements.txt` to load them in your environment.
 
 ## Notes
 * The project structure is created with `py -m django startproject`
