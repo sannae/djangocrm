@@ -5,7 +5,8 @@ from .models import *
 from .forms import OrderForm, CreateUserForm
 from .filters import OrderFilter
 from django.contrib.auth.forms import UserCreationForm
-
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 
 # Our views, i.e. the rendered pages where the URLs will redirect
 
@@ -21,6 +22,10 @@ def registerPage(request):
         form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
+            user = form.cleaned_data.get('username')
+            # Flash message: doc at https://docs.djangoproject.com/en/3.0/ref/contrib/messages/#using-messages-in-views-and-templates
+            messages.success(request, 'Account was created for ' + user)
+            return redirect('login') 
     context = {
         'form':form
     }
@@ -28,6 +33,16 @@ def registerPage(request):
 
 # Log in
 def loginPage(request):
+    if request.method == "POST":
+        # Get username and password from POST request
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        # Authenticate
+        user = authenticate(request, username=username, password=password)
+        # Login user
+        if user is not None:
+            login(request, user)
+            return redirect('home')
     context = {}
     return render(request, 'accounts/login.html', context)
 
