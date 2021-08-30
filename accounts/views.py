@@ -2,8 +2,10 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.forms import inlineformset_factory
 from .models import *
-from .forms import OrderForm
+from .forms import OrderForm, CreateUserForm
 from .filters import OrderFilter
+from django.contrib.auth.forms import UserCreationForm
+
 
 # Our views, i.e. the rendered pages where the URLs will redirect
 
@@ -12,6 +14,24 @@ from .filters import OrderFilter
 #   /APPNAME/templates/APPNAME/
 # Because Django will automatically look for them there
 
+# Register
+def registerPage(request):
+    form = CreateUserForm()
+    if request.method == "POST":
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+    context = {
+        'form':form
+    }
+    return render(request, 'accounts/register.html', context)
+
+# Log in
+def loginPage(request):
+    context = {}
+    return render(request, 'accounts/login.html', context)
+
+# Dashboard
 def home(request):
     # Retrieving data from the database
     orders = Order.objects.all()
@@ -32,12 +52,14 @@ def home(request):
 
     return render(request, 'accounts/dashboard.html', context)
 
+# Products page
 def products(request):
     # Retrieving all the products from the database
     products = Product.objects.all()
     # The products dictionary will be passed to any function in the corresponding template
     return render(request, 'accounts/products.html', {'products':products})
 
+# Customer view
 def customer(request, pk_test):
     # Primary key
     customer = Customer.objects.get(id=pk_test)
@@ -56,6 +78,7 @@ def customer(request, pk_test):
     }
     return render(request, 'accounts/customer.html', context)
 
+# Create order form
 def createOrder(request, pk):
 
     # Form set (use either 'form' or 'formset' properties)
@@ -83,6 +106,7 @@ def createOrder(request, pk):
     }
     return render(request, 'accounts/order_form.html', context)
 
+# Update order form
 def updateOrder(request, pk):
 
     # Get the order with the corresponding primary key 
@@ -103,6 +127,7 @@ def updateOrder(request, pk):
     }
     return render(request, 'accounts/order_form.html', context)
 
+# Delete order form
 def deleteOrder(request, pk):
 
     # Order to be deleted

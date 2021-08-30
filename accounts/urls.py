@@ -4,6 +4,10 @@ from . import views
 # App URL manager
 
 urlpatterns = [
+    # Register
+    path('register/', views.registerPage, name="register"),
+    # Log in
+    path('login/', views.loginPage, name="login"),
     # Home page
     path('', views.home, name="home"),
     # Products page
