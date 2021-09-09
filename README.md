@@ -14,6 +14,7 @@ All the required Python packages are listed in `requirements.txt` (to be updatab
 ## Notes
 * The project structure is created with `py -m django startproject`
 * Within the project, there may be several *apps*: each app structure is created with `py -m django startapp`; in our case the main and only app is called `accounts`
+* The live web server is started with `py -m django manage runserver`
 * The views of the app call the templates saved in `accounts/templates/accounts` (according to a Django's convention)
 * The templates use a combination of HTML/CSS/JS and Django's `{% block %}` syntax: this lets you modularize the code
 * The HTML/CSS/JS templates use [Bootstrap](https://getbootstrap.com/docs/5.1/getting-started/introduction/)
