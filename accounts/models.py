@@ -1,8 +1,10 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Models file: building the database and classes objects here
 
 class Customer(models.Model):
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)  # One-to-one with user
     name = models.CharField(max_length=200, null=True)     # String
     phone = models.CharField(max_length=200, null=True, blank=True)     # String
     address = models.CharField(max_length=200, null=True, blank=True)   # String

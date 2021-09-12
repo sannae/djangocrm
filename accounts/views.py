@@ -8,6 +8,7 @@ from .filters import OrderFilter
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import Group
 from django.contrib import messages
 
 # Our views, i.e. the rendered pages where the URLs will redirect
@@ -24,10 +25,17 @@ def registerPage(request):
     if request.method == "POST":
         form = CreateUserForm(request.POST)
         if form.is_valid():
-            form.save()
-            user = form.cleaned_data.get('username')
+            user = form.save()
+            username = form.cleaned_data.get('username')
+            # Assign default group
+            group = Group.objects.get(name='Customers')
+            user.groups.add(group)
+            # Create a customer assigned to new user upon registration 
+            Customer.objects.create(
+                user=user,
+            )
             # Flash message: doc at https://docs.djangoproject.com/en/3.0/ref/contrib/messages/#using-messages-in-views-and-templates
-            messages.success(request, 'Account was created for ' + user)
+            messages.success(request, 'Account was created for ' + username)
             return redirect('login') 
     context = {
         'form':form
@@ -186,6 +194,20 @@ def deleteOrder(request, pk):
     return render(request, 'accounts/delete.html', context)
 
 # User's page
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['Customers'])
 def userPage(request):
-    context = {}
+    orders = request.user.customer.order_set.all()
+
+    # Status bar
+    total_orders = orders.count()
+    delivered_orders = orders.filter(status='Delivered').count()
+    pending_orders = orders.filter(status='Pending').count()
+
+    context = {
+        'orders':orders,
+        'total_orders':total_orders,
+        'delivered_orders':delivered_orders,
+        'pending_orders':pending_orders
+    }
     return render(request, 'accounts/user.html', context)

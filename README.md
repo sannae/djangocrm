@@ -49,6 +49,7 @@ All the required Python packages are listed in `requirements.txt` (to be updatab
 ## **Definitely** review:
 * [Forms](https://docs.djangoproject.com/en/3.2/topics/forms/) and [Formsets](https://docs.djangoproject.com/en/3.2/topics/forms/formsets/)
 * Users' authentication and register page
+* How to use decorators
 
 ## Next
 * :whale: [Dockerize the project](https://docs.docker.com/samples/django/)!
