@@ -14,7 +14,7 @@ All the required Python packages are listed in `requirements.txt` (to be updatab
 ## Notes
 * The project structure is created with `py -m django startproject`
 * Within the project, there may be several *apps*: each app structure is created with `py -m django startapp`; in our case the main and only app is called `accounts`
-* The live web server is started with `py -m django manage runserver`
+* The live web server is started with `py -m django manage runserver` and is reachable at http://localhost:8000
 * The views of the app call the templates saved in `accounts/templates/accounts` (according to a Django's convention)
 * The templates use a combination of HTML/CSS/JS and Django's `{% block %}` syntax: this lets you modularize the code
 * The HTML/CSS/JS templates use [Bootstrap](https://getbootstrap.com/docs/5.1/getting-started/introduction/)
@@ -30,10 +30,11 @@ All the required Python packages are listed in `requirements.txt` (to be updatab
 <!-- {#% This is a commented Django tag %#} -->
 ```
 ### About user authentication
-* [ Test credentials: `TestEdo`,`T1234Edo!` ]
-* To restrict the user's login, add the `@login_required(login_url='login')` decorator from `django.contrib.auth.decorators` above any restricted view in `views.py`
-* Likewise, you don't want any logged-in user to be able to access the `'login'` or the `'register'` page: add the `if request.user.is_authenticated` in those views to handle it
-* Decorators can be listed in a dedicated `\APPNAME\decorators.py` file
+<!-- Test credentials: `Test`,`T1234Edo!` -->
+<!-- Admin credentials: `edoardosanna` -->
+* To restrict the user's login, add the `@login_required(login_url='login')` decorator from `django.contrib.auth.decorators` above any restricted view in `views.py` [**manual method**]
+* Likewise, you don't want any logged-in user to be able to access the `'login'` or the `'register'` page: add the `if request.user.is_authenticated` in those views to handle it [ **manual method** ]
+* Decorators can be listed in a dedicated `\APPNAME\decorators.py` file. A **decorator** is a function that takes another function as a parameter. Decorators are called with the `@` symbol
 
 ### About database and relationships
 * To initiate the database, run `py -m manage migrate`: the database's settings are in `SETTINGS.py` and SQLite3 is the default.
@@ -45,11 +46,9 @@ All the required Python packages are listed in `requirements.txt` (to be updatab
      1) Example: to retrieve all the customers saved with the `Customer` method, run `Customer.objects.all()`
      2) Example: to retrieve all the customers with a specific name, run `Customer.objects.all().filter(name="YOURNAME")`
 
-## Usage
-* To debug the application with live rendering, run `py -m manage runserver` from the root folder and browse to *http://localhost:8000*
-
 ## **Definitely** review:
 * [Forms](https://docs.djangoproject.com/en/3.2/topics/forms/) and [Formsets](https://docs.djangoproject.com/en/3.2/topics/forms/formsets/)
+* Users' authentication and register page
 
 ## Next
 * :whale: [Dockerize the project](https://docs.docker.com/samples/django/)!

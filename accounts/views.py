@@ -1,4 +1,4 @@
-from accounts.decorators import unauthenticated_user
+from accounts.decorators import *
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.forms import inlineformset_factory
@@ -61,6 +61,7 @@ def logoutUser(request):
 
 # Dashboard
 @login_required(login_url='login')
+@admin_only
 def home(request):
     # Retrieving data from the database
     orders = Order.objects.all()
@@ -83,6 +84,7 @@ def home(request):
 
 # Products page
 @login_required(login_url='login')
+@allowed_users(allowed_roles=['Administrators'])
 def products(request):
     # Retrieving all the products from the database
     products = Product.objects.all()
@@ -91,6 +93,7 @@ def products(request):
 
 # Customer view
 @login_required(login_url='login')
+@allowed_users(allowed_roles=['Administrators'])
 def customer(request, pk_test):
     # Primary key
     customer = Customer.objects.get(id=pk_test)
@@ -111,6 +114,7 @@ def customer(request, pk_test):
 
 # Create order form
 @login_required(login_url='login')
+@allowed_users(allowed_roles=['Administrators'])
 def createOrder(request, pk):
 
     # Form set (use either 'form' or 'formset' properties)
@@ -140,6 +144,7 @@ def createOrder(request, pk):
 
 # Update order form
 @login_required(login_url='login')
+@allowed_users(allowed_roles=['Administrators'])
 def updateOrder(request, pk):
 
     # Get the order with the corresponding primary key 
@@ -162,6 +167,7 @@ def updateOrder(request, pk):
 
 # Delete order form
 @login_required(login_url='login')
+@allowed_users(allowed_roles=['Administrators'])
 def deleteOrder(request, pk):
 
     # Order to be deleted
