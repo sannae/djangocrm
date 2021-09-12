@@ -8,6 +8,8 @@ urlpatterns = [
     path('register/', views.registerPage, name="register"),
     # Log in
     path('login/', views.loginPage, name="login"),
+    # Log out
+    path('logout/', views.logoutUser, name="logout"),
     # Home page
     path('', views.home, name="home"),
     # Products page

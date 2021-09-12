@@ -3,6 +3,14 @@
 <!-- Tags -->
 {% load static %}
 
+<style>
+  .hello-msg{
+    font-size: 18px;
+    color: white;
+    margin-right: 20px;
+  }
+</style>
+
 <!-- Template from getbootstrap.com -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   
@@ -27,4 +35,8 @@
         </li>
       </ul>
     </div>
+
+    <span class="hello-msg">Hello, {{ request.user }}!</span>
+    <span><a class="hello-msg" href="{% url 'logout' %}">Logout</a></span>
+
   </nav>

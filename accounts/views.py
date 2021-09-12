@@ -6,6 +6,7 @@ from .forms import OrderForm, CreateUserForm
 from .filters import OrderFilter
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 # Our views, i.e. the rendered pages where the URLs will redirect
@@ -17,36 +18,54 @@ from django.contrib import messages
 
 # Register
 def registerPage(request):
-    form = CreateUserForm()
-    if request.method == "POST":
-        form = CreateUserForm(request.POST)
-        if form.is_valid():
-            form.save()
-            user = form.cleaned_data.get('username')
-            # Flash message: doc at https://docs.djangoproject.com/en/3.0/ref/contrib/messages/#using-messages-in-views-and-templates
-            messages.success(request, 'Account was created for ' + user)
-            return redirect('login') 
-    context = {
-        'form':form
-    }
-    return render(request, 'accounts/register.html', context)
+    # Check if the user is authenticated
+    if request.user.is_authenticated:
+        return redirect('home')
+    else: # Log the user in
+        form = CreateUserForm()
+        if request.method == "POST":
+            form = CreateUserForm(request.POST)
+            if form.is_valid():
+                form.save()
+                user = form.cleaned_data.get('username')
+                # Flash message: doc at https://docs.djangoproject.com/en/3.0/ref/contrib/messages/#using-messages-in-views-and-templates
+                messages.success(request, 'Account was created for ' + user)
+                return redirect('login') 
+        context = {
+            'form':form
+        }
+        return render(request, 'accounts/register.html', context)
 
 # Log in
 def loginPage(request):
-    if request.method == "POST":
-        # Get username and password from POST request
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        # Authenticate
-        user = authenticate(request, username=username, password=password)
-        # Login user
-        if user is not None:
-            login(request, user)
-            return redirect('home')
-    context = {}
-    return render(request, 'accounts/login.html', context)
+    # Check if the user is authenticated
+    if request.user.is_authenticated:
+        return redirect('home')
+    else:
+        if request.method == "POST":
+            # Get username and password from POST request
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            # Authenticate
+            user = authenticate(request, username=username, password=password)
+            # Login user
+            if user is not None:
+                login(request, user)
+                return redirect('home')
+            else:
+                messages.info(request, "Username OR password is incorrect!")
+
+        context = {}
+        return render(request, 'accounts/login.html', context)
+
+# Logout user
+def logoutUser(request):
+    # Logout the user
+    logout(request)
+    return redirect('login')
 
 # Dashboard
+@login_required(login_url='login')
 def home(request):
     # Retrieving data from the database
     orders = Order.objects.all()
@@ -68,6 +87,7 @@ def home(request):
     return render(request, 'accounts/dashboard.html', context)
 
 # Products page
+@login_required(login_url='login')
 def products(request):
     # Retrieving all the products from the database
     products = Product.objects.all()
@@ -75,6 +95,7 @@ def products(request):
     return render(request, 'accounts/products.html', {'products':products})
 
 # Customer view
+@login_required(login_url='login')
 def customer(request, pk_test):
     # Primary key
     customer = Customer.objects.get(id=pk_test)
@@ -94,6 +115,7 @@ def customer(request, pk_test):
     return render(request, 'accounts/customer.html', context)
 
 # Create order form
+@login_required(login_url='login')
 def createOrder(request, pk):
 
     # Form set (use either 'form' or 'formset' properties)
@@ -122,6 +144,7 @@ def createOrder(request, pk):
     return render(request, 'accounts/order_form.html', context)
 
 # Update order form
+@login_required(login_url='login')
 def updateOrder(request, pk):
 
     # Get the order with the corresponding primary key 
@@ -143,6 +166,7 @@ def updateOrder(request, pk):
     return render(request, 'accounts/order_form.html', context)
 
 # Delete order form
+@login_required(login_url='login')
 def deleteOrder(request, pk):
 
     # Order to be deleted
