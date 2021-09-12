@@ -33,6 +33,7 @@ All the required Python packages are listed in `requirements.txt` (to be updatab
 * [ Test credentials: `TestEdo`,`T1234Edo!` ]
 * To restrict the user's login, add the `@login_required(login_url='login')` decorator from `django.contrib.auth.decorators` above any restricted view in `views.py`
 * Likewise, you don't want any logged-in user to be able to access the `'login'` or the `'register'` page: add the `if request.user.is_authenticated` in those views to handle it
+* Decorators can be listed in a dedicated `\APPNAME\decorators.py` file
 
 ### About database and relationships
 * To initiate the database, run `py -m manage migrate`: the database's settings are in `SETTINGS.py` and SQLite3 is the default.

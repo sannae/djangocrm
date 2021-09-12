@@ -21,5 +21,7 @@ urlpatterns = [
     # Update order form
     path('update_order/<str:pk>', views.updateOrder, name="update_order"),
     # Delete order form
-    path('delete_order/<str:pk>', views.deleteOrder, name="delete_order")
+    path('delete_order/<str:pk>', views.deleteOrder, name="delete_order"),
+    # User's profile
+    path('user/', views.userPage, name="user_page")
 ]
