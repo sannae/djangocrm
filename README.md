@@ -29,6 +29,8 @@ All the required Python packages are listed in `requirements.txt` (to be updatab
 <!-- {% This is a Django tag %} -->
 <!-- {#% This is a commented Django tag %#} -->
 ```
+* Each customer can sign up and automatically a new user will be created, assigned to the Customers users group: the user's profile page contains the list of last orders
+
 ### About user authentication
 <!-- Test credentials: `Test`,`T1234Edo!` -->
 <!-- Admin credentials: `edoardosanna` -->
