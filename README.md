@@ -7,6 +7,9 @@ The CRM is a web application with the following features:
 * Check the status of the whole context with a dashboard
 * Sign up as a new customer and automatically create you own user page, with default assigned role and permissions 
 
+### TO DO
+* Add the Region property to the customers and to the users, and then make the user see only the customers from the assigned region 
+
 ## Requirements
 * [Python](https://www.python.org/downloads/)
 * [Django](https://www.djangoproject.com/download/)
@@ -31,7 +34,6 @@ All the required Python packages are listed in `requirements.txt` (to be updatab
 <!-- {% This is a Django tag %} -->
 <!-- {#% This is a commented Django tag %#} -->
 ```
-
 
 ### About user authentication
 <!-- Test credentials: `Test`,`T1234Edo!` -->
