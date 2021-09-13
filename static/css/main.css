@@ -2,8 +2,14 @@ logo{
     
 }
 
-#body{
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+body{
+    font-family: 'Roboto', sans-serif !important;
     background-color: #ebeff5;
+}
+
+.row{
+    margin: auto;
 }
 
 #total-orders{

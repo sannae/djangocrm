@@ -24,6 +24,7 @@ All the required Python packages are listed in `requirements.txt` (to be updatab
   1) Update the model in `models.py` (if needed)
   2) Create or update the corresponding view in `views.py`
   3) If the new feature opens a new page, create the new html page in `templates/` and add it to `urls.py`
+* Django is embedded in HTML via [template tags](https://docs.djangoproject.com/en/3.2/ref/templates/builtins/)
 * :warning: Do _not_ comment Django template tags with usual HTML comments, as described [here](https://stackoverflow.com/questions/62793267/reverse-for-create-order-with-no-arguments-not-found)!! 
 ```html
 <!-- this is the usual HTML comment -->
