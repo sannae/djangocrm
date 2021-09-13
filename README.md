@@ -1,10 +1,11 @@
 # djangocrm
 A little project to create a CRM web application with [Django](https://www.djangoproject.com/) using [Dennis Ivy](https://github.com/divanov11)'s [YouTube tutorial](https://youtube.com/playlist?list=PL-51WBLyFTg2vW-_6XBoUpE7vpmoR3ztO).
 
-The CRM is a web application that lets you:
+The CRM is a web application with the following features:
 * Perform CRUD operations on Customers, Products, Orders and Users
 * Manage the database, user logins as an administrator
 * Check the status of the whole context with a dashboard
+* Sign up as a new customer and automatically create you own user page, with default assigned role and permissions 
 
 ## Requirements
 * [Python](https://www.python.org/downloads/)

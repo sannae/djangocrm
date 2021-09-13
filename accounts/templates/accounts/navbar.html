@@ -15,7 +15,9 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   
   <!-- image logo -->
-  <img src="{% static 'images/logo.png' %}"
+  <a href="{% url 'home' %}">
+    <img src="{% static 'images/logo.png' %}">
+  </a>
 
   <!-- Text logo -->
   <!-- <a class="navbar-brand" href="#">Navbar</a> -->
@@ -40,7 +42,7 @@
       </ul>
     </div>
 
-    <span class="hello-msg">Hello, {{ request.user }}!</span>
+    <span class="hello-msg">Hello, <i>{{ request.user }}</i></span>
     <span><a class="hello-msg" href="{% url 'logout' %}">Logout</a></span>
 
   </nav>

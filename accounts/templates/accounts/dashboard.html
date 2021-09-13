@@ -64,8 +64,12 @@
 					{% for order in orders %}
 						<tr>
 							<td>{{ order.product }}</td>
-							<td>{{ order.date_created}}</td>
-							<td>{{ order.status}}</td>
+							<td>{{ order.date_created|date:"d-m-Y" }}</td>
+							{% if order.status == 'Delivered' %}
+								<td id="delivered">{{ order.status}}</td>
+							{% else %}
+								<td>{{ order.status}}</td>
+							{% endif %}
 							<td><a class="btn btn-sm btn-info" href="{% url 'update_order' order.id %}">Update</a></td>
 							<td><a class="btn btn-sm btn-danger" href="{% url 'delete_order' order.id %}">Delete</a></td>
 						</tr>

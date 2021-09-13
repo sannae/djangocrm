@@ -11,9 +11,13 @@ logo{
 }
 
 #orders-delivered{
-    background-color: #7abecc;
+    background-color: #86df8d;
 }
 
 #orders-pending{
-    background-color: #7cd1c0;
+    background-color: #d17c7c;
+}
+
+#delivered{
+    color: green;
 }
