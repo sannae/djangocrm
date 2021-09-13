@@ -31,14 +31,15 @@ All the required Python packages are listed in `requirements.txt` (to be updatab
 <!-- {% This is a Django tag %} -->
 <!-- {#% This is a commented Django tag %#} -->
 ```
-* Each customer can sign up and automatically a new user will be created, assigned to the Customers users group: the user's profile page contains the list of last orders
+
 
 ### About user authentication
 <!-- Test credentials: `Test`,`T1234Edo!` -->
-<!-- Admin credentials: `edoardosanna` -->
+<!-- admin credentials: `Admin1234!` -->
 * To restrict the user's login, add the `@login_required(login_url='login')` decorator from `django.contrib.auth.decorators` above any restricted view in `views.py` [**manual method**]
 * Likewise, you don't want any logged-in user to be able to access the `'login'` or the `'register'` page: add the `if request.user.is_authenticated` in those views to handle it [ **manual method** ]
 * Decorators can be listed in a dedicated `\APPNAME\decorators.py` file. A **decorator** is a function that takes another function as a parameter. Decorators are called with the `@` symbol
+* Each customer can sign up and automatically a new user will be created, assigned to the Customers users group: the user's profile page contains the list of last orders
 
 ### About database and relationships
 * To initiate the database, run `py -m manage migrate`: the database's settings are in `SETTINGS.py` and SQLite3 is the default.
