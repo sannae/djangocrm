@@ -21,6 +21,7 @@ html {
         /* -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     */
     border-radius: 5px;
+
 }
 
 .form_container {
@@ -29,9 +30,7 @@ html {
 
 #form-title{
     color: #fff;
-    
 }
-
 .login_btn {
     width: 100%;
     background: #33ccff !important;
@@ -54,11 +53,4 @@ html {
 .input_pass:focus {
     box-shadow: none !important;
     outline: 0px !important;
-}
-
-#messages{
-    background-color: green;
-    color: #fff;
-    padding: 10px;
-    margin-top: 10px;
 }
