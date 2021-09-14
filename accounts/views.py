@@ -31,9 +31,9 @@ def registerPage(request):
             group = Group.objects.get(name='Customers')
             user.groups.add(group)
             # Create a customer assigned to new user upon registration 
-            Customer.objects.create(
-                user=user,
-            )
+            # Customer.objects.create(
+            #     user=user,
+            # )
             # Flash message: doc at https://docs.djangoproject.com/en/3.0/ref/contrib/messages/#using-messages-in-views-and-templates
             messages.success(request, 'Account was created for ' + username)
             return redirect('login') 
@@ -195,19 +195,27 @@ def deleteOrder(request, pk):
 
 # User's page
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['Customers'])
+@allowed_users(allowed_roles=['Customers','Administrators','Agents'])
 def userPage(request):
-    orders = request.user.customer.order_set.all()
+
+    username = request.user.username
+    
+    
+    # Customer's orders
+    #orders = request.user.customer.order_set.all()
 
     # Status bar
-    total_orders = orders.count()
-    delivered_orders = orders.filter(status='Delivered').count()
-    pending_orders = orders.filter(status='Pending').count()
+    # total_orders = orders.count()
+    # delivered_orders = orders.filter(status='Delivered').count()
+    # pending_orders = orders.filter(status='Pending').count()
 
     context = {
-        'orders':orders,
-        'total_orders':total_orders,
-        'delivered_orders':delivered_orders,
-        'pending_orders':pending_orders
+
+
+
+       # 'orders':orders,
+       # 'total_orders':total_orders,
+       # 'delivered_orders':delivered_orders,
+       # 'pending_orders':pending_orders
     }
     return render(request, 'accounts/user.html', context)

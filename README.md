@@ -36,7 +36,8 @@ All the required Python packages are listed in `requirements.txt` (to be updatab
 ```
 
 ### About user authentication
-<!-- Test credentials: `Test`,`T1234Edo!` -->
+<!-- Test credentials: `TestAgent`,`T1234Edo!` -->
+<!-- Test credentials: `TestCustomer`,`T4321Edo!`-->
 <!-- admin credentials: `Admin1234!` -->
 * To restrict the user's login, add the `@login_required(login_url='login')` decorator from `django.contrib.auth.decorators` above any restricted view in `views.py` [**manual method**]
 * Likewise, you don't want any logged-in user to be able to access the `'login'` or the `'register'` page: add the `if request.user.is_authenticated` in those views to handle it [ **manual method** ]

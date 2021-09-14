@@ -42,7 +42,7 @@
       </ul>
     </div>
 
-    <span class="hello-msg">Hello, <i>{{ request.user }}</i></span>
+    <span class="hello-msg">Logged in as <a href="{% url 'user_page' %}"><i>{{ request.user }}</i></a></span>
     <span><a class="hello-msg" href="{% url 'logout' %}">Logout</a></span>
 
   </nav>

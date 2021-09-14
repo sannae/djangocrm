@@ -3,33 +3,9 @@
 
 {% block content %}
 
-{% include 'accounts/status.html' %}
+<!-- {#% include 'accounts/status.html' %#} -->
 
-<!-- Orders table (taken from customer.html) -->
-<div class="row">
-	<div class="col-md">
-		<div class="card card-body">
-			<table class="table table-sm">
-				<tr>
-					<th>Product</th>
-					<th>Notes</th>
-					<th>Date Ordered</th>
-					<th>Status</th>
-				</tr>
+<h3>Welcome <b>{{ request.user }}</b>!</h3>
 
-				<!-- Template tag -->
-				{% for order in orders %}
-				<tr>
-					<td>{{ order.product.name }}</td>
-					<td>{{ order.notes }}</td>
-					<td>{{ order.date_created }}</td>
-					<td>{{ order.status }}</td>
-				</tr>
-				{% endfor %}
-
-			</table>
-		</div>
-	</div>
-</div>
 
 {% endblock content %}

@@ -34,7 +34,7 @@ def admin_only(view_function):
         group = None
         if request.user.groups.exists():
             group = request.user.groups.all()[0].name
-        if group == 'Administrators':
+        if group == 'Administrators' or group == 'Agents':
             return view_function(request, *args, **kwargs)
         if group == 'Customers':
             return redirect('user_page')
