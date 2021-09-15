@@ -9,6 +9,7 @@ The CRM is a web application with the following features:
 
 ### TO DO
 * Add the Region property to the customers and to the users, and then make the user see only the customers from the assigned region 
+* Replace the status cells with stats diagrams (e.g. orders of the months, customers acquired, etc.)
 
 ## Requirements
 * [Python](https://www.python.org/downloads/)
@@ -38,10 +39,12 @@ All the required Python packages are listed in `requirements.txt` (to be updatab
 ### About user authentication
 <!-- Test credentials: `TestAgent`,`T1234Edo!` -->
 <!-- Test credentials: `TestCustomer`,`T4321Edo!`-->
+<!-- Test credentials: `TestUserPiemonte`,`T1234Edo!` -->
 <!-- admin credentials: `Admin1234!` -->
 * To restrict the user's login, add the `@login_required(login_url='login')` decorator from `django.contrib.auth.decorators` above any restricted view in `views.py` [**manual method**]
 * Likewise, you don't want any logged-in user to be able to access the `'login'` or the `'register'` page: add the `if request.user.is_authenticated` in those views to handle it [ **manual method** ]
 * Decorators can be listed in a dedicated `\APPNAME\decorators.py` file. A **decorator** is a function that takes another function as a parameter. Decorators are called with the `@` symbol
+* Adding a property to a user: check [this documentation](https://docs.djangoproject.com/en/dev/topics/auth/customizing/#extending-the-existing-user-model)
 
 ### About database and relationships
 * To initiate the database, run `py -m manage migrate`: the database's settings are in `SETTINGS.py` and SQLite3 is the default.
