@@ -71,11 +71,18 @@ def logoutUser(request):
 @login_required(login_url='login')
 @admin_only
 def home(request):
+
+    # Get user's regions
+    userGroups = list(request.user.groups.all())
+    regions = []
+    for i in range(len(userGroups)):
+        regions.append(userGroups[i].name)
+
     # Retrieving data from the database
     orders = Order.objects.all()
     customers = Customer.objects.all()
+    
     # Totals for the status bar
-    total_customers = customers.count()
     total_orders = orders.count()
     delivered_orders = orders.filter(status='Delivered').count()
     pending_orders = orders.filter(status='Pending').count()
@@ -195,7 +202,6 @@ def deleteOrder(request, pk):
 
 # User's page
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['Customers','Administrators','Agents'])
 def userPage(request):
 
     username = request.user.username
