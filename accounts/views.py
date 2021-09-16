@@ -75,18 +75,20 @@ def home(request):
     # Get user's regions 
     # (the list 'region' contains the user's related regions, depending on the assigned groups)
     userGroups = list(request.user.groups.all())
+    groups = []
+    for i in range(len(userGroups)):
+        groups.append(userGroups[i].name)
     regions = []
     for i in range(len(userGroups)):
-        regions.append(userGroups[i].name)
+        regions.append(userGroups[i].id)
 
     # Retrieving data from the database
-    orders = Order.objects.all()
-    customers = Customer.objects.all()
-    
-
-    #if request.user.groups not in ['Administrators']:
-    #   filtered_customers = customers.filter(Region.name in regions)
-    #   print(filtered_customers)
+    if request.user.is_superuser:
+        customers = Customer.objects.all().order_by('-date_created') 
+        orders = Order.objects.all().order_by('-date_created') 
+    else:
+        customers = Customer.objects.all().filter(region_id__in=regions).order_by('-date_created') 
+        orders = Order.objects.all().filter(customer_id__in=customers).order_by('-date_created') 
     
     # Totals for the status bar
     total_orders = orders.count()
@@ -114,7 +116,7 @@ def products(request):
 
 # Customer view
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['Administrators'])
+#@allowed_users(allowed_roles=['Administrators'])
 def customer(request, pk_test):
     # Primary key
     customer = Customer.objects.get(id=pk_test)
@@ -210,24 +212,35 @@ def deleteOrder(request, pk):
 @login_required(login_url='login')
 def userPage(request):
 
-    username = request.user.username
-    
-    
-    # Customer's orders
-    #orders = request.user.customer.order_set.all()
+    # user's Groups and Regions IDs
+    userGroups = list(request.user.groups.all())
+    groups = []
+    for i in range(len(userGroups)):
+        groups.append(userGroups[i].name)
+    regions = []
+    for i in range(len(userGroups)):
+        regions.append(userGroups[i].id)
+
+    # if user is Admin, see everything
+    if request.user.is_superuser:
+        orders = Order.objects.all().order_by('-date_created')
+    # if user is Customer, see only his orders
+    elif 'Customers' in groups:
+        orders = request.user.customer.order_set.all().order_by('-date_created') 
+    # if user is Agent, see only orders from assigned regions
+    else:
+        customers = Customer.objects.all().filter(region_id__in=regions)
+        orders = Order.objects.all().filter(customer_id__in=customers).order_by('-date_created')        
 
     # Status bar
-    # total_orders = orders.count()
-    # delivered_orders = orders.filter(status='Delivered').count()
-    # pending_orders = orders.filter(status='Pending').count()
+    total_orders = orders.count()
+    delivered_orders = orders.filter(status='Delivered').count()
+    pending_orders = orders.filter(status='Pending').count()
 
     context = {
-
-
-
-       # 'orders':orders,
-       # 'total_orders':total_orders,
-       # 'delivered_orders':delivered_orders,
-       # 'pending_orders':pending_orders
+       'orders':orders,
+       'total_orders':total_orders,
+       'delivered_orders':delivered_orders,
+       'pending_orders':pending_orders
     }
     return render(request, 'accounts/user.html', context)
