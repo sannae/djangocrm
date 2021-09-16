@@ -107,7 +107,7 @@ def home(request):
 
 # Products page
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['Administrators'])
+@unallowed_users(unallowed_roles=['Customers'])
 def products(request):
     # Retrieving all the products from the database
     products = Product.objects.all()
@@ -116,7 +116,6 @@ def products(request):
 
 # Customer view
 @login_required(login_url='login')
-#@allowed_users(allowed_roles=['Administrators'])
 def customer(request, pk_test):
     # Primary key
     customer = Customer.objects.get(id=pk_test)
@@ -137,7 +136,7 @@ def customer(request, pk_test):
 
 # Create order form
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['Administrators'])
+@unallowed_users(unallowed_roles=['Customers'])
 def createOrder(request, pk):
 
     # Form set (use either 'form' or 'formset' properties)
@@ -167,7 +166,7 @@ def createOrder(request, pk):
 
 # Update order form
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['Administrators'])
+@unallowed_users(unallowed_roles=['Customers'])
 def updateOrder(request, pk):
 
     # Get the order with the corresponding primary key 
@@ -190,7 +189,7 @@ def updateOrder(request, pk):
 
 # Delete order form
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['Administrators'])
+@unallowed_users(unallowed_roles=['Customers'])
 def deleteOrder(request, pk):
 
     # Order to be deleted

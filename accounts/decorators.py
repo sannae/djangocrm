@@ -13,7 +13,7 @@ def unauthenticated_user(view_function):
     return wrapper_function
 
 # Check if logged user is within the allowed roles
-def allowed_users(allowed_roles=[]):
+def unallowed_users(unallowed_roles=[]):
     def decorator(view_function):
         def wrapper_function(request, *args, **kwargs):
             # Initialize the group
@@ -21,7 +21,7 @@ def allowed_users(allowed_roles=[]):
             if request.user.groups.exists():
                 # Re-assign the first group of the list
                 group = request.user.groups.all()[0].name
-            if group in allowed_roles:
+            if group not in unallowed_roles:
                 return view_function(request, *args, **kwargs)
             else:
                 return HttpResponse('You are not authorized to view this page!')
