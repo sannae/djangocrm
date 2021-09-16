@@ -43,7 +43,7 @@ All the required Python packages are listed in `requirements.txt` (to be updatab
 * Likewise, you don't want any logged-in user to be able to access the `'login'` or the `'register'` page: add the `if request.user.is_authenticated` in those views to handle it [ **manual method** ]
 * Decorators can be listed in a dedicated `\APPNAME\decorators.py` file. A **decorator** is a function that takes another function as a parameter. Decorators are called with the `@` symbol
 * Adding a property to a user: check [this documentation](https://docs.djangoproject.com/en/dev/topics/auth/customizing/#extending-the-existing-user-model)
-* Users are divided into Administrators (can do anything, access backend), Customers (only see the customer's page), region-based Agents (each one in one or many regional user groups, can only see the customers and orders from the specific assigned regions)
+* Users are divided into Administrators (can do anything, access backend), Customers (only see the customer's page), region-based Agents (each one in one or many regional user groups, can only see the customers and orders from the specific assigned regions) :warning: Kind of a workaround, but Django lets you assign the same user to multiple groups, so it's helpful
 
 ### About database and relationships
 * To initiate the database, run `py -m manage migrate`: the database's settings are in `SETTINGS.py` and SQLite3 is the default.

@@ -82,6 +82,7 @@ def home(request):
     # Retrieving data from the database
     orders = Order.objects.all()
     customers = Customer.objects.all()
+    
 
     #if request.user.groups not in ['Administrators']:
     #   filtered_customers = customers.filter(Region.name in regions)
