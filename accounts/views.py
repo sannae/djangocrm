@@ -72,7 +72,8 @@ def logoutUser(request):
 @admin_only
 def home(request):
 
-    # Get user's regions
+    # Get user's regions 
+    # (the list 'region' contains the user's related regions, depending on the assigned groups)
     userGroups = list(request.user.groups.all())
     regions = []
     for i in range(len(userGroups)):
@@ -81,6 +82,10 @@ def home(request):
     # Retrieving data from the database
     orders = Order.objects.all()
     customers = Customer.objects.all()
+
+    #if request.user.groups not in ['Administrators']:
+    #   filtered_customers = customers.filter(Region.name in regions)
+    #   print(filtered_customers)
     
     # Totals for the status bar
     total_orders = orders.count()
