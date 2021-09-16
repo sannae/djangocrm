@@ -8,6 +8,7 @@ The CRM is a web application with the following features:
 * Sign up as a new customer and automatically create you own user page, with default assigned role and permissions 
 
 ### TO DO
+* TODO: Solve the NavBar authorization problem, depending on the user's Groups
 * Add the Region property to the customers and to the users, and then make the user see only the customers from the assigned region. The solution with User Groups described below is just a workaround.
 * Replace the status cells with stats diagrams (e.g. orders of the months, customers acquired, etc.)
 
