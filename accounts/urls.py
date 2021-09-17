@@ -23,5 +23,7 @@ urlpatterns = [
     # Delete order form
     path('delete_order/<str:pk>', views.deleteOrder, name="delete_order"),
     # User's profile
-    path('user/', views.userPage, name="user_page")
+    path('user/', views.userPage, name="user_page"),
+    # Unauthorized error page
+    path('unauthorized_page/', views.unauthorizedPage, name="unauthorized_page")
 ]

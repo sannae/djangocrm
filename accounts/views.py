@@ -257,3 +257,11 @@ def userPage(request):
        'pending_orders':pending_orders
     }
     return render(request, 'accounts/user.html', context)
+
+# Unauthorized error page
+def unauthorizedPage(request):
+    # Context to be passed to the template
+    context = {
+        
+    }
+    return render(request, 'accounts/unauthorized.html', context)

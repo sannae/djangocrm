@@ -24,7 +24,7 @@ def unallowed_users(unallowed_roles=[]):
             if group not in unallowed_roles:
                 return view_function(request, *args, **kwargs)
             else:
-                return HttpResponse('You are not authorized to view this page!')
+                return redirect('unauthorized_page')
         return wrapper_function
     return decorator
 
