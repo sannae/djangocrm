@@ -19,6 +19,7 @@ from django.contrib import messages
 # Because Django will automatically look for them there
 
 # Register
+# Only unauthenticated users
 @unauthenticated_user
 def registerPage(request):
     form = CreateUserForm()
@@ -43,6 +44,7 @@ def registerPage(request):
     return render(request, 'accounts/register.html', context)
 
 # Log in
+# Only unauthenticated users
 @unauthenticated_user
 def loginPage(request):
     if request.method == "POST":
@@ -68,8 +70,10 @@ def logoutUser(request):
     return redirect('login')
 
 # Dashboard
+# Only authenticated users
+# Customers users are not authorized
 @login_required(login_url='login')
-@admin_only
+@not_customer
 def home(request):
 
     # Get user's regions 
@@ -106,6 +110,8 @@ def home(request):
     return render(request, 'accounts/dashboard.html', context)
 
 # Products page
+# Only authenticated users
+# Customers not allowed
 @login_required(login_url='login')
 @unallowed_users(unallowed_roles=['Customers'])
 def products(request):
@@ -115,6 +121,7 @@ def products(request):
     return render(request, 'accounts/products.html', {'products':products})
 
 # Customer view
+# Only authenticated users
 @login_required(login_url='login')
 def customer(request, pk_test):
     # Primary key
@@ -135,12 +142,14 @@ def customer(request, pk_test):
     return render(request, 'accounts/customer.html', context)
 
 # Create order form
+# Only authenticated users
+# No Customers allowed
 @login_required(login_url='login')
 @unallowed_users(unallowed_roles=['Customers'])
 def createOrder(request, pk):
 
     # Form set (use either 'form' or 'formset' properties)
-    OrderFormSet = inlineformset_factory(Customer, Order, fields=('product','status'), extra=5)
+    OrderFormSet = inlineformset_factory(Customer, Order, fields=('product','status','notes'), extra=5)
     customer = Customer.objects.get(id=pk)
     # No initial objects in the formset
     formSet = OrderFormSet(queryset = Order.objects.none(), instance=customer)
@@ -165,6 +174,8 @@ def createOrder(request, pk):
     return render(request, 'accounts/order_form.html', context)
 
 # Update order form
+# Only authenticated users
+# No Customers allowed
 @login_required(login_url='login')
 @unallowed_users(unallowed_roles=['Customers'])
 def updateOrder(request, pk):
@@ -188,6 +199,8 @@ def updateOrder(request, pk):
     return render(request, 'accounts/order_form.html', context)
 
 # Delete order form
+# Only authenticated users
+# No Customers allowed
 @login_required(login_url='login')
 @unallowed_users(unallowed_roles=['Customers'])
 def deleteOrder(request, pk):
@@ -208,6 +221,7 @@ def deleteOrder(request, pk):
     return render(request, 'accounts/delete.html', context)
 
 # User's page
+# Only authenticated users
 @login_required(login_url='login')
 def userPage(request):
 

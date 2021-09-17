@@ -12,7 +12,7 @@ def unauthenticated_user(view_function):
 
     return wrapper_function
 
-# Check if logged user is within the allowed roles
+# if the user is in the restricted groups, redirect him to the 'unauthorized' page
 def unallowed_users(unallowed_roles=[]):
     def decorator(view_function):
         def wrapper_function(request, *args, **kwargs):
@@ -28,8 +28,8 @@ def unallowed_users(unallowed_roles=[]):
         return wrapper_function
     return decorator
 
-# Redirect to user's page if not admin
-def admin_only(view_function):
+# Redirect to user's page if Customers
+def not_customer(view_function):
     def wrapper_function(request, *args, **kwargs):
         group = None
         if request.user.groups.exists():

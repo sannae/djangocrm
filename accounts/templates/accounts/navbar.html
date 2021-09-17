@@ -29,7 +29,7 @@
       <ul class="navbar-nav">
         <!-- Filter is currently done on the is_staff attribute -->
         <!-- There should be a better way to do it -->
-        {% if request.user.is_staff %}
+        <!-- {#% if request.user.is_staff %#} -->
         <li class="nav-item active">
           <!-- Checkout the Django tag to reference the url name in the urls file -->
           <a class="nav-link" href="{% url 'home' %}">Dashboard</a>
@@ -38,7 +38,7 @@
           <!-- Checkout the Django tag to reference the url name in the urls file -->
           <a class="nav-link" href="{% url 'products' %}">Products</a>
         </li>
-        {% endif %}
+        <!-- {#% endif %#} -->
       </ul>
     </div>
 
