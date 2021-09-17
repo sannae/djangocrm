@@ -2,4 +2,4 @@
 private.md
 
 # Pycache
-*/__pycache__/*
+__pycache__/
