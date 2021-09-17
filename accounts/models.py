@@ -1,12 +1,14 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 
 # Models file: building the database and classes objects here
 
 class Customer(models.Model):
-    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)  # One-to-one with user
+
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.SET_NULL)  # One-to-one with user, set user null if deleted
     name = models.CharField(max_length=200, null=True)     # String
     phone = models.CharField(max_length=200, null=True, blank=True)     # String
+    region = models.ForeignKey(Group, null=True, on_delete=models.SET_NULL)
     address = models.CharField(max_length=200, null=True, blank=True)   # String
     email = models.CharField(max_length=200, null=True)     # String
     date_created = models.DateTimeField(auto_now_add=True)  # Timestamp

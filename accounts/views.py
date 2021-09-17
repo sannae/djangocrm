@@ -19,6 +19,7 @@ from django.contrib import messages
 # Because Django will automatically look for them there
 
 # Register
+# Only unauthenticated users
 @unauthenticated_user
 def registerPage(request):
     form = CreateUserForm()
@@ -43,6 +44,7 @@ def registerPage(request):
     return render(request, 'accounts/register.html', context)
 
 # Log in
+# Only unauthenticated users
 @unauthenticated_user
 def loginPage(request):
     if request.method == "POST":
@@ -68,14 +70,31 @@ def logoutUser(request):
     return redirect('login')
 
 # Dashboard
+# Only authenticated users
+# Customers users are not authorized
 @login_required(login_url='login')
-@admin_only
+@not_customer
 def home(request):
+
+    # Get user's regions 
+    # (the list 'region' contains the user's related regions, depending on the assigned groups)
+    userGroups = list(request.user.groups.all())
+    groups = []
+    for i in range(len(userGroups)):
+        groups.append(userGroups[i].name)
+    regions = []
+    for i in range(len(userGroups)):
+        regions.append(userGroups[i].id)
+
     # Retrieving data from the database
-    orders = Order.objects.all()
-    customers = Customer.objects.all()
+    if request.user.is_superuser:
+        customers = Customer.objects.all().order_by('-date_created') 
+        orders = Order.objects.all().order_by('-date_created') 
+    else:
+        customers = Customer.objects.all().filter(region_id__in=regions).order_by('-date_created') 
+        orders = Order.objects.all().filter(customer_id__in=customers).order_by('-date_created') 
+    
     # Totals for the status bar
-    total_customers = customers.count()
     total_orders = orders.count()
     delivered_orders = orders.filter(status='Delivered').count()
     pending_orders = orders.filter(status='Pending').count()
@@ -91,8 +110,10 @@ def home(request):
     return render(request, 'accounts/dashboard.html', context)
 
 # Products page
+# Only authenticated users
+# Customers not allowed
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['Administrators'])
+@unallowed_users(unallowed_roles=['Customers'])
 def products(request):
     # Retrieving all the products from the database
     products = Product.objects.all()
@@ -100,8 +121,8 @@ def products(request):
     return render(request, 'accounts/products.html', {'products':products})
 
 # Customer view
+# Only authenticated users
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['Administrators'])
 def customer(request, pk_test):
     # Primary key
     customer = Customer.objects.get(id=pk_test)
@@ -121,12 +142,14 @@ def customer(request, pk_test):
     return render(request, 'accounts/customer.html', context)
 
 # Create order form
+# Only authenticated users
+# No Customers allowed
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['Administrators'])
+@unallowed_users(unallowed_roles=['Customers'])
 def createOrder(request, pk):
 
     # Form set (use either 'form' or 'formset' properties)
-    OrderFormSet = inlineformset_factory(Customer, Order, fields=('product','status'), extra=5)
+    OrderFormSet = inlineformset_factory(Customer, Order, fields=('product','status','notes'), extra=5)
     customer = Customer.objects.get(id=pk)
     # No initial objects in the formset
     formSet = OrderFormSet(queryset = Order.objects.none(), instance=customer)
@@ -151,8 +174,10 @@ def createOrder(request, pk):
     return render(request, 'accounts/order_form.html', context)
 
 # Update order form
+# Only authenticated users
+# No Customers allowed
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['Administrators'])
+@unallowed_users(unallowed_roles=['Customers'])
 def updateOrder(request, pk):
 
     # Get the order with the corresponding primary key 
@@ -174,8 +199,10 @@ def updateOrder(request, pk):
     return render(request, 'accounts/order_form.html', context)
 
 # Delete order form
+# Only authenticated users
+# No Customers allowed
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['Administrators'])
+@unallowed_users(unallowed_roles=['Customers'])
 def deleteOrder(request, pk):
 
     # Order to be deleted
@@ -194,28 +221,39 @@ def deleteOrder(request, pk):
     return render(request, 'accounts/delete.html', context)
 
 # User's page
+# Only authenticated users
 @login_required(login_url='login')
-@allowed_users(allowed_roles=['Customers','Administrators','Agents'])
 def userPage(request):
 
-    username = request.user.username
-    
-    
-    # Customer's orders
-    #orders = request.user.customer.order_set.all()
+    # user's Groups and Regions IDs
+    userGroups = list(request.user.groups.all())
+    groups = []
+    for i in range(len(userGroups)):
+        groups.append(userGroups[i].name)
+    regions = []
+    for i in range(len(userGroups)):
+        regions.append(userGroups[i].id)
+
+    # if user is Admin, see everything
+    if request.user.is_superuser:
+        orders = Order.objects.all().order_by('-date_created')
+    # if user is Customer, see only his orders
+    elif 'Customers' in groups:
+        orders = request.user.customer.order_set.all().order_by('-date_created') 
+    # if user is Agent, see only orders from assigned regions
+    else:
+        customers = Customer.objects.all().filter(region_id__in=regions)
+        orders = Order.objects.all().filter(customer_id__in=customers).order_by('-date_created')        
 
     # Status bar
-    # total_orders = orders.count()
-    # delivered_orders = orders.filter(status='Delivered').count()
-    # pending_orders = orders.filter(status='Pending').count()
+    total_orders = orders.count()
+    delivered_orders = orders.filter(status='Delivered').count()
+    pending_orders = orders.filter(status='Pending').count()
 
     context = {
-
-
-
-       # 'orders':orders,
-       # 'total_orders':total_orders,
-       # 'delivered_orders':delivered_orders,
-       # 'pending_orders':pending_orders
+       'orders':orders,
+       'total_orders':total_orders,
+       'delivered_orders':delivered_orders,
+       'pending_orders':pending_orders
     }
     return render(request, 'accounts/user.html', context)

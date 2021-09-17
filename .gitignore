@@ -1,2 +1,5 @@
 # Private files
 private.md
+
+# Pycache
+*/__pycache__/*

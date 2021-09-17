@@ -9,3 +9,4 @@ admin.site.register(Product)
 admin.site.register(Order)
 
 
+
