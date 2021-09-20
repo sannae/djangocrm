@@ -103,8 +103,8 @@ def home(request):
     pending_orders = orders.filter(status='Pending').count()
     # Context to be passed to the template
     context = {
-        'orders':orders,
-        'customers':customers,
+        'orders':orders[0:5], # Last 5 orders
+        'customers':customers[0:5], # Last 5 customers
         'total_orders':total_orders,
         'delivered_orders':delivered_orders,
         'pending_orders':pending_orders

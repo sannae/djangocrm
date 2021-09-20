@@ -8,7 +8,7 @@
 * Keep the CreateCustomer button on the dashboard, or restrict the customer's creation permission to admin?
 ### Hopefully do
 * Add the Region property to the customers and to the users, and then make the user see only the customers from the assigned region. The solution with User Groups described below is just a workaround.
-* Replace the status cells with stats diagrams (e.g. orders of the months, customers acquired, etc.)
+* Replace the status cells with [stats charts](https://testdriven.io/blog/django-charts/) (e.g. orders of the months, customers acquired, etc.)
 * Internationalization (it/en)
 
 ## Requirements
