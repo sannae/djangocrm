@@ -1,22 +1,22 @@
 # djangocrm
 :snake: A little project to create a CRM web application with [Django](https://www.djangoproject.com/) using [Dennis Ivy](https://github.com/divanov11)'s [YouTube tutorial](https://youtube.com/playlist?list=PL-51WBLyFTg2vW-_6XBoUpE7vpmoR3ztO).
 
-### TO DO
+### :pushpin: TO DO
 * Fix the DateTime format in the order filter in the Customer page
 * Solve the NavBar authorization problem, depending on the user's Groups
 * Fix the Update_order view with OrderFormSet instead of Form
 * Keep the CreateCustomer button on the dashboard, or restrict the customer's creation permission to admin?
-### Hopefully do
+### :magnet: Hopefully do
 * Add the Region property to the customers and to the users, and then make the user see only the customers from the assigned region. The solution with User Groups described below is just a workaround.
 * Replace the status cells with [stats charts](https://testdriven.io/blog/django-charts/) (e.g. orders of the months, customers acquired, etc.)
 * Internationalization (it/en)
 
-## Requirements
+## :briefcase: Requirements
 * [Python](https://www.python.org/downloads/)
 * [Django](https://www.djangoproject.com/download/)
 All the required Python packages are listed in `requirements.txt` (to be updatable with `pip freeze > requirements.txt`), run `pip install -r requirements.txt` to load them in your environment.
 
-## Random notes
+## :clipboard: Random notes
 * The project structure is created with `py -m django startproject`
 * Within the project, there may be several *apps*: each app structure is created with `py -m django startapp`; in our case the main and only app is called `accounts`
 * The live web server is started with `py -m django manage runserver` and is reachable at http://localhost:8000
@@ -67,4 +67,4 @@ All the required Python packages are listed in `requirements.txt` (to be updatab
 * :whale: [Dockerize the project](https://docs.docker.com/samples/django/)!
 * :ocean: Deploy on [Azure Web App](https://docs.microsoft.com/en-us/azure/app-service/tutorial-python-postgresql-app?tabs=bash%2Cclone&pivots=postgres-single-server) 
 * :toolbox: Deploy on [ACS](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-using-azure-container-registry)
-* :wave: [CI/CD](https://youtube.com/playlist?list=PLOLrQ9Pn6caxeUIXRVOZpDJ_2PbGAa_Io)!
+* :door: [CI/CD](https://youtube.com/playlist?list=PLOLrQ9Pn6caxeUIXRVOZpDJ_2PbGAa_Io)!
