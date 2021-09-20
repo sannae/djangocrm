@@ -1,18 +1,15 @@
 # djangocrm
 A little project to create a CRM web application with [Django](https://www.djangoproject.com/) using [Dennis Ivy](https://github.com/divanov11)'s [YouTube tutorial](https://youtube.com/playlist?list=PL-51WBLyFTg2vW-_6XBoUpE7vpmoR3ztO).
 
-The CRM is a web application with the following features:
-* Perform CRUD operations on Customers, Products, Orders and Users
-* Manage the database, user logins as an administrator
-* Check the status of the whole context with a dashboard
-* Sign up as a new customer and automatically create you own user page, with default assigned role and permissions 
-
 ### TO DO
+* Fix the DateTime format in the order filter in the Customer page
 * Solve the NavBar authorization problem, depending on the user's Groups
 * Fix the Update_order view with OrderFormSet instead of Form
+* Keep the CreateCustomer button on the dashboard, or restrict the customer's creation permission to admin?
 ### Hopefully do
 * Add the Region property to the customers and to the users, and then make the user see only the customers from the assigned region. The solution with User Groups described below is just a workaround.
 * Replace the status cells with stats diagrams (e.g. orders of the months, customers acquired, etc.)
+* Internationalization (it/en)
 
 ## Requirements
 * [Python](https://www.python.org/downloads/)
