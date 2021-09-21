@@ -20,6 +20,15 @@ All the required Python packages are listed in `requirements.txt` (to be updatab
 * The project structure is created with `py -m django startproject`
 * Within the project, there may be several *apps*: each app structure is created with `py -m django startapp`; in our case the main and only app is called `accounts`
 * The live web server is started with `py -m django manage runserver` and is reachable at http://localhost:8000
+* Django follows the MVC architecture (Model-View-Controller), although it uses a non-idiomatic way of naming its parts:  
+```
+Idiomatic term | Django term | Meaning
+Model          | Model       | Contains all the business logic. At the very least the database access logic
+View           | Template    | Responsible for generating the HTML and other UI
+Controller     | View        | Contains the logic to tie the other parts together and to generate a response to a user request
+```
+A schematic view is available below:
+![Django Structure](django-structure.png)
 * The views of the app call the templates saved in `accounts/templates/accounts` (according to a Django's convention)
 * The templates use a combination of HTML/CSS/JS and Django's `{% block %}` syntax: this lets you modularize the code
 * The HTML/CSS/JS templates use [Bootstrap](https://getbootstrap.com/docs/5.1/getting-started/introduction/)
