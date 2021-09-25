@@ -2,14 +2,16 @@
 :snake: A little project to create a CRM web application with [Django](https://www.djangoproject.com/) using [Dennis Ivy](https://github.com/divanov11)'s [YouTube tutorial](https://youtube.com/playlist?list=PL-51WBLyFTg2vW-_6XBoUpE7vpmoR3ztO).
 
 ### :pushpin: TO DO
-* Fix the DateTime format in the order filter in the Customer page
-* Solve the NavBar authorization problem, depending on the user's Groups
-* Fix the Update_order view with OrderFormSet instead of Form
-* Keep the CreateCustomer button on the dashboard, or restrict the customer's creation permission to admin?
+[ ] Fix the problem with deleting the user's profile pic in the user profile page
+[ ] Fix the DateTime format in the order filter in the Customer page
+[x] Solve the NavBar authorization problem, depending on the user's Groups
+[ ] Fix the Update_order view with OrderFormSet instead of Form
+[ ] Keep the CreateCustomer button on the dashboard, or restrict the customer's creation permission to admin?
 ### :magnet: Hopefully do
 * Add the Region property to the customers and to the users, and then make the user see only the customers from the assigned region. The solution with User Groups described below is just a workaround.
 * Replace the status cells with [stats charts](https://testdriven.io/blog/django-charts/) (e.g. orders of the months, customers acquired, etc.)
 * Internationalization (it/en)
+* Add a [chatbot](https://www.datacamp.com/community/tutorials/building-a-chatbot-using-chatterbot) for customer's support
 
 ## :briefcase: Requirements
 * [Python](https://www.python.org/downloads/)
@@ -56,6 +58,7 @@ A schematic view is available below:
 * Administrators must be given the `is_superuser` property: these users can be created and updated only from the Django admin panel
 * There are several user Groups, each one for each region: by adding users in these Groups (Django allows the many-to-many relationship between users and groups), they will be able to see only the customers coming from the corresponding regions and their orders. These users also can be created only from the Django admin panel.
 * The last special user Group is called `Customers`: they can only view their profile page, containing their orders. These user are automatically created during user registration. A corresponding Customer is created with the same name and email as the user.
+* To filter users depending on their associated groups, you can use a [custom template tag](https://docs.djangoproject.com/en/1.11/howto/custom-template-tags/). In this case we created a [`has_group.py`](./accounts/templatetags/has_group.py) file, which then needs to be loaded with the `{% load has_group %}` tag in the HTML template requiring it. A better description can be found in [this Stackoverflow post](https://stackoverflow.com/questions/34571880/how-to-check-in-template-if-user-belongs-to-a-group).
 
 ### About database and relationships
 * To initiate the database, run `py -m manage migrate`: the database's settings are in `SETTINGS.py` and SQLite3 is the default.

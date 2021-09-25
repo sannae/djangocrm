@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.forms import inlineformset_factory
 from .models import *
-from .forms import OrderForm, CreateUserForm
+from .forms import OrderForm, CreateUserForm, CustomerForm
 from .filters import OrderFilter
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
@@ -268,3 +268,21 @@ def unauthorizedPage(request):
         
     }
     return render(request, 'accounts/unauthorized.html', context)
+
+# User's settings page
+@login_required(login_url='login')
+def userSettings(request):
+    # logged-in user
+    customer = request.user.customer
+    # Render the form
+    form = CustomerForm(instance=customer)
+    # Submit (including files!)
+    if request.method == 'POST':
+        form = CustomerForm(request.POST, request.FILES, instance=customer)
+        if form.is_valid():
+            form.save()
+    # Context to be passed to the template
+    context = {
+        'form': form
+    }
+    return render(request, 'accounts/user_settings.html', context)

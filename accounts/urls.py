@@ -25,5 +25,7 @@ urlpatterns = [
     # User's profile
     path('user/', views.userPage, name="user_page"),
     # Unauthorized error page
-    path('unauthorized_page/', views.unauthorizedPage, name="unauthorized_page")
+    path('unauthorized_page/', views.unauthorizedPage, name="unauthorized_page"),
+    # User's settings
+    path('user_settings/', views.userSettings, name="user_settings")
 ]

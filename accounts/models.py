@@ -11,6 +11,7 @@ class Customer(models.Model):
     region = models.ForeignKey(Group, null=True, on_delete=models.SET_NULL)
     address = models.CharField(max_length=200, null=True, blank=True)   # String
     email = models.CharField(max_length=200, null=True)     # String
+    profile_pic = models.ImageField(default="blank_profile.png", null=True, blank=True)      # Image
     date_created = models.DateTimeField(auto_now_add=True)  # Timestamp
 
     def __str__(self):

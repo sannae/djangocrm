@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls.static import static
+from django.conf import settings
 
 # It's basically an URL manager
 
@@ -22,3 +24,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),    # Admin panel (pre-installed with Django)
     path('', include('accounts.urls')), # Include all the URL paths in the accounts app
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
