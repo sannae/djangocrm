@@ -2,14 +2,14 @@
 :snake: A little project to create a CRM web application with [Django](https://www.djangoproject.com/) using [Dennis Ivy](https://github.com/divanov11)'s [YouTube tutorial](https://youtube.com/playlist?list=PL-51WBLyFTg2vW-_6XBoUpE7vpmoR3ztO).
 
 ### :pushpin: TO DO
-[ ] Fix the problem with deleting the user's profile pic in the user profile page
-[ ] Fix the DateTime format in the order filter in the Customer page
-[x] Solve the NavBar authorization problem, depending on the user's Groups
-[ ] Fix the Update_order view with OrderFormSet instead of Form
-[ ] Keep the CreateCustomer button on the dashboard, or restrict the customer's creation permission to admin?
+- [ ] Fix the problem with deleting the user's profile pic in the user profile page
+- [ ] Fix the DateTime format in the order filter in the Customer page
+- [x] Solve the NavBar authorization problem, depending on the user's Groups
+- [ ] Fix the Update_order view with OrderFormSet instead of Form
+- [ ] Keep the CreateCustomer button on the dashboard, or restrict the customer's creation permission to admin?
 ### Hopefully do
 * Add the Region property to the customers and to the users, and then make the user see only the customers from the assigned region. The solution with User Groups described below is just a workaround.
-* Replace the status cells with [stats charts](https://testdriven.io/blog/django-charts/) (e.g. orders of the months, customers acquired, etc.)
+* Replace the status cells with [stats charts](https://testdriven.io/blog/django-charts/) (e.g. orders of the months, customers acquired, etc.). Also a good tutorial [here](https://www.section.io/engineering-education/integrating-chart-js-in-django/).
 * Internationalization (it/en)
 * Add a [chatbot](https://www.datacamp.com/community/tutorials/building-a-chatbot-using-chatterbot) for customer's support
 * Integrate Google APIs?
