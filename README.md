@@ -7,18 +7,19 @@
 [x] Solve the NavBar authorization problem, depending on the user's Groups
 [ ] Fix the Update_order view with OrderFormSet instead of Form
 [ ] Keep the CreateCustomer button on the dashboard, or restrict the customer's creation permission to admin?
-### :magnet: Hopefully do
+### Hopefully do
 * Add the Region property to the customers and to the users, and then make the user see only the customers from the assigned region. The solution with User Groups described below is just a workaround.
 * Replace the status cells with [stats charts](https://testdriven.io/blog/django-charts/) (e.g. orders of the months, customers acquired, etc.)
 * Internationalization (it/en)
 * Add a [chatbot](https://www.datacamp.com/community/tutorials/building-a-chatbot-using-chatterbot) for customer's support
+* Integrate Google APIs?
 
-## :briefcase: Requirements
+## Requirements
 * [Python](https://www.python.org/downloads/)
 * [Django](https://www.djangoproject.com/download/)
 All the required Python packages are listed in `requirements.txt` (to be updatable with `pip freeze > requirements.txt`), run `pip install -r requirements.txt` to load them in your environment.
 
-## :clipboard: Random notes
+## Random notes
 * The project structure is created with `py -m django startproject`
 * Within the project, there may be several *apps*: each app structure is created with `py -m django startapp`; in our case the main and only app is called `accounts`
 * The live web server is started with `py -m django manage runserver` and is reachable at http://localhost:8000
@@ -77,6 +78,6 @@ A schematic view is available below:
 
 ## Next
 * :whale: [Dockerize the project](https://docs.docker.com/samples/django/)!
-* :ocean: Deploy on [Azure Web App](https://docs.microsoft.com/en-us/azure/app-service/tutorial-python-postgresql-app?tabs=bash%2Cclone&pivots=postgres-single-server) 
+* :ocean: Deploy on [Azure Web App](https://docs.microsoft.com/en-us/azure/app-service/tutorial-python-postgresql-app?tabs=bash%2Cclone&pivots=postgres-single-server), also with [this tutorial](https://docs.microsoft.com/en-us/learn/modules/django-deployment/)
 * :toolbox: Deploy on [ACS](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-using-azure-container-registry)
 * :door: [CI/CD](https://youtube.com/playlist?list=PLOLrQ9Pn6caxeUIXRVOZpDJ_2PbGAa_Io)!
