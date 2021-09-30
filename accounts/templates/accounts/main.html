@@ -47,46 +47,47 @@
 
 <!-- Charts -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> --> <!-- Last version of Chart.js, but it's resizing all charts -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+<!-- Last version of Chart.js, but it's resizing all charts -->
 
 <!-- Pie chart -->
 <script>
-
+    
     // Setup
     const data = {
-        labels: {{ pie_chart_labels|safe }},
-        datasets: [{
-            data: {{ pie_chart_data|safe }},
-            backgroundColor: [
-                'rgb(0, 204, 0)',
-                'rgb(255, 178, 102)',
-                'rgb(153, 0, 0)'
-            ],
-            borderColor: '#FFF',
-            hoverOffset: 4
-        }]
-    };
-    
-        // Config
-        const config = {
-            type: 'doughnut',
-            data: data,
-            options: {
-                responsive: true,
-                legend: {
-                    display: true,
-                    labels: {
-                        fontColor: "white",
-                        fontSize: 16
-                    }
-                },
-                elements: {
-                    arc: {
-                        borderWidth: 0
-                    }
+        labels: {{ pie_chart_labels| safe }},
+    datasets: [{
+        data: {{ pie_chart_data| safe }},
+        backgroundColor: [
+        'rgb(0, 204, 0)',
+        'rgb(255, 178, 102)',
+        'rgb(153, 0, 0)'
+    ],
+        borderColor: '#FFF',
+        hoverOffset: 4
+    }]
+};
+
+    // Config
+    const config = {
+        type: 'doughnut',
+        data: data,
+        options: {
+            responsive: true,
+            legend: {
+                display: true,
+                labels: {
+                    fontColor: "white",
+                    fontSize: 16
+                }
+            },
+            elements: {
+                arc: {
+                    borderWidth: 0
                 }
             }
-        };
+        }
+    };
 
     // Chart
     var myPieChart = new Chart(
