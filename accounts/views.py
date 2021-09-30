@@ -101,13 +101,22 @@ def home(request):
     total_orders = orders.count()
     delivered_orders = orders.filter(status='Delivered').count()
     pending_orders = orders.filter(status='Pending').count()
+    out_for_delivery_orders = orders.filter(status='Out for delivery').count()
+
+    # Data for pie chart
+    pie_chart_labels = ['Delivered', 'Pending', 'Out for delivery']
+    pie_chart_data = [delivered_orders, pending_orders, out_for_delivery_orders]
+    
+
     # Context to be passed to the template
     context = {
         'orders':orders[0:5], # Last 5 orders
         'customers':customers[0:5], # Last 5 customers
         'total_orders':total_orders,
         'delivered_orders':delivered_orders,
-        'pending_orders':pending_orders
+        'pending_orders':pending_orders,
+        'pie_chart_labels':pie_chart_labels,
+        'pie_chart_data':pie_chart_data
     }
 
     return render(request, 'accounts/dashboard.html', context)
