@@ -3,7 +3,7 @@
 
 ### :pushpin: TO DO
 - [ ] Fix the problem with deleting the user's profile pic in the user profile page
-- [ ] Fix the DateTime format in the order filter in the Customer page
+- [ ] Fix the DateTime format (European?) in the order filter in the Customer page
 - [x] Solve the NavBar authorization problem, depending on the user's Groups
 - [ ] Fix the Update_order view with OrderFormSet instead of Form
 - [ ] Keep the CreateCustomer button on the dashboard, or restrict the customer's creation permission to admin?
@@ -70,6 +70,9 @@ A schematic view is available below:
   3) Specific tables are then available as objects with `TABLENAME.objects.all()` and other methods. 
      1) Example: to retrieve all the customers saved with the `Customer` method, run `Customer.objects.all()`
      2) Example: to retrieve all the customers with a specific name, run `Customer.objects.all().filter(name="YOURNAME")`
+
+## About graphics
+* Charts were rendered with [Chart.js](https://www.chartjs.org/docs/latest/)
 
 ## **Definitely** review:
 * [Forms](https://docs.djangoproject.com/en/3.2/topics/forms/) and [Formsets](https://docs.djangoproject.com/en/3.2/topics/forms/formsets/)

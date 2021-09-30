@@ -5,7 +5,7 @@ logo{
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 body{
     font-family: 'Roboto', sans-serif !important;
-    background-color: #ebeff5;
+    background-color: #ebeff5 !important;
 }
 
 .row{
