@@ -115,10 +115,30 @@ def home(request):
     list_days = list(range(1,days_this_month+1))
     orders_this_month = orders.filter(date_created__month = this_month)
     orders_cumulated = []
+    delivered_cumulated = []
+    out_for_delivery_cumulated = []
+    pending_cumulated = []
+
     for day in list_days:
+
+        # Day-by-day data
         orders_this_day = orders_this_month.filter(date_created__day = day)
+        delivered_this_day = orders_this_month.filter(date_created__day = day, status='Delivered')
+        out_for_delivery_this_day = orders_this_month.filter(date_created__day = day, status='Out for delivery')
+        pending_this_day = orders_this_month.filter(date_created__day = day, status='Pending')
+
+        # Count elements
         cumulated_orders_this_day = orders_this_day.count()
+        cumulated_delivered = delivered_this_day.count()
+        cumulated_out_for_delivery = out_for_delivery_this_day.count()
+        cumulated_pending = pending_this_day.count()
+
+        # Create list
         orders_cumulated.append(cumulated_orders_this_day)
+        delivered_cumulated.append(cumulated_delivered)
+        out_for_delivery_cumulated.append(cumulated_out_for_delivery)
+        pending_cumulated.append(cumulated_pending)
+
 
     # Context to be passed to the template
     context = {
@@ -130,7 +150,10 @@ def home(request):
         'pie_chart_labels':pie_chart_labels,
         'pie_chart_data':pie_chart_data,
         'list_days':list_days,
-        'orders_cumulated':orders_cumulated
+        'orders_cumulated':orders_cumulated,
+        'delivered_cumulated':delivered_cumulated,
+        'out_for_delivery_cumulated':out_for_delivery_cumulated,
+        'pending_cumulated':pending_cumulated
     }
 
     return render(request, 'accounts/dashboard.html', context)

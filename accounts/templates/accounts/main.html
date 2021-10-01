@@ -104,6 +104,7 @@
     const line_data = {
         labels: {{ list_days | safe }},
         datasets: [{
+            label: 'Total orders',
             data: {{ orders_cumulated | safe }},
             borderColor: '#fff',
             borderWidth: 1,
