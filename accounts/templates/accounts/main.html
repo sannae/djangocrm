@@ -52,7 +52,7 @@
 
 <!-- Pie chart -->
 <script>
-    
+
     // Setup
     const data = {
         labels: {{ pie_chart_labels| safe }},
@@ -93,6 +93,47 @@
     var myPieChart = new Chart(
         document.getElementById('myPieChart'),
         config
+    );
+
+</script>
+<!-- Line chart -->
+<script>
+
+    // Setup
+    const line_data = {
+        labels: {{ pie_chart_labels| safe }},
+    line_datasets: [{
+        data: {{ pie_chart_data| safe }},
+        borderColor: '#FFF',
+        hoverOffset: 4
+    }]
+};
+
+    // Config
+    const line_config = {
+        type: 'line',
+        data: line_data,
+        options: {
+            responsive: true,
+            legend: {
+                display: true,
+                labels: {
+                    fontColor: "white",
+                    fontSize: 16
+                }
+            },
+            elements: {
+                arc: {
+                    borderWidth: 0
+                }
+            }
+        }
+    };
+
+    // Chart
+    var myPieChart = new Chart(
+        document.getElementById('myLineChart'),
+        line_config
     );
 
 </script>

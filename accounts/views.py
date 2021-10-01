@@ -1,4 +1,5 @@
 from accounts.decorators import *
+from datetime import datetime
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.forms import inlineformset_factory
@@ -107,6 +108,10 @@ def home(request):
     pie_chart_labels = ['Delivered', 'Pending', 'Out for delivery']
     pie_chart_data = [delivered_orders, pending_orders, out_for_delivery_orders]
     
+    # Data for line chart
+    this_month = datetime.today().month
+    orders_this_month = orders.filter(date_created__month = this_month)
+    # over here...
 
     # Context to be passed to the template
     context = {
@@ -117,6 +122,7 @@ def home(request):
         'pending_orders':pending_orders,
         'pie_chart_labels':pie_chart_labels,
         'pie_chart_data':pie_chart_data
+        'orders_this_month':orders_this_month
     }
 
     return render(request, 'accounts/dashboard.html', context)
