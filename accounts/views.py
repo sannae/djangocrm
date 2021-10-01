@@ -120,9 +120,6 @@ def home(request):
         cumulated_orders_this_day = orders_this_day.count()
         orders_cumulated.append(cumulated_orders_this_day)
 
-    print(list_days)
-    print(orders_cumulated)
-
     # Context to be passed to the template
     context = {
         'orders':orders[0:5], # Last 5 orders
@@ -132,8 +129,8 @@ def home(request):
         'pending_orders':pending_orders,
         'pie_chart_labels':pie_chart_labels,
         'pie_chart_data':pie_chart_data,
-        'orders_cumulated':orders_cumulated,
-        'list_days':list_days
+        'list_days':list_days,
+        'orders_cumulated':orders_cumulated
     }
 
     return render(request, 'accounts/dashboard.html', context)
