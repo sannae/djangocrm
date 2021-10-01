@@ -7,6 +7,7 @@
 - [x] Solve the NavBar authorization problem, depending on the user's Groups
 - [ ] Fix the Update_order view with OrderFormSet instead of Form
 - [ ] Keep the CreateCustomer button on the dashboard, or restrict the customer's creation permission to admin?
+- [ ] Move the JS scripts (mostly the charts in the dashboard) to a separate file, still keeping the Django template tags
 ### Hopefully do
 * Add the Region property to the customers and to the users, and then make the user see only the customers from the assigned region. The solution with User Groups described below is just a workaround.
 * Replace the status cells with [stats charts](https://testdriven.io/blog/django-charts/) (e.g. orders of the months, customers acquired, etc.). Also a good tutorial [here](https://www.section.io/engineering-education/integrating-chart-js-in-django/).
