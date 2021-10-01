@@ -1,5 +1,6 @@
 from accounts.decorators import *
 from datetime import datetime
+import calendar
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.forms import inlineformset_factory
@@ -110,8 +111,17 @@ def home(request):
     
     # Data for line chart
     this_month = datetime.today().month
+    days_this_month = calendar.monthrange(9999,this_month)[1]
+    list_days = list(range(1,days_this_month+1))
     orders_this_month = orders.filter(date_created__month = this_month)
-    # over here...
+    orders_cumulated = []
+    for day in list_days:
+        orders_this_day = orders_this_month.filter(date_created__day = day)
+        cumulated_orders_this_day = orders_this_day.count()
+        orders_cumulated.append(cumulated_orders_this_day)
+
+    print(list_days)
+    print(orders_cumulated)
 
     # Context to be passed to the template
     context = {
@@ -121,8 +131,9 @@ def home(request):
         'delivered_orders':delivered_orders,
         'pending_orders':pending_orders,
         'pie_chart_labels':pie_chart_labels,
-        'pie_chart_data':pie_chart_data
-        'orders_this_month':orders_this_month
+        'pie_chart_data':pie_chart_data,
+        'orders_cumulated':orders_cumulated,
+        'list_days':list_days
     }
 
     return render(request, 'accounts/dashboard.html', context)

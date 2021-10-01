@@ -96,17 +96,19 @@
     );
 
 </script>
+
 <!-- Line chart -->
 <script>
 
     // Setup
     const line_data = {
-        labels: {{ pie_chart_labels| safe }},
-    line_datasets: [{
-        data: {{ pie_chart_data| safe }},
-        borderColor: '#FFF',
-        hoverOffset: 4
-    }]
+        labels: {{ list_days | safe }},
+        datasets: [{
+            data: {{ orders_cumulated | safe }},
+            borderColor: '#fff',
+            borderWidth: 1,
+            hoverOffset: 4
+        }]
 };
 
     // Config
@@ -121,17 +123,19 @@
                     fontColor: "white",
                     fontSize: 16
                 }
-            },
-            elements: {
-                arc: {
-                    borderWidth: 0
-                }
+            scales: {
+                yAxes: [{
+                    display: true,
+                    ticks: {
+                        suggestedMax: 10
+                    }
+                }]
             }
         }
     };
 
     // Chart
-    var myPieChart = new Chart(
+    var myLineChart = new Chart(
         document.getElementById('myLineChart'),
         line_config
     );
