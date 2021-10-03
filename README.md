@@ -10,7 +10,7 @@
 - [ ] Keep the CreateCustomer button on the dashboard, or restrict the customer's creation permission to admin?
 - [ ] Move the JS scripts (mostly the charts in the dashboard) to a separate file, still keeping the Django template tags
 - [ ] Add a [choropleth map](https://github.com/sgratzl/chartjs-chart-geo) divided by Region in the dashboard
-
+- [ ] Create a `populate-db.py` function to fill the database with random Data using the model definitions
 ### Hopefully do
 * Add the Region property to the customers and to the users, and then make the user see only the customers from the assigned region. The solution with User Groups described below is just a workaround.
 * Replace the status cells with [stats charts](https://testdriven.io/blog/django-charts/) (e.g. orders of the months, customers acquired, etc.).
