@@ -80,6 +80,10 @@ A schematic view is available below:
   3) Specific tables are then available as objects with `TABLENAME.objects.all()` and other methods. 
      1) Example: to retrieve all the customers saved with the `Customer` method, run `Customer.objects.all()`
      2) Example: to retrieve all the customers with a specific name, run `Customer.objects.all().filter(name="YOURNAME")`
+* To pass from the native Sqlite3 to PostgreSQL (and use PGAdmin to manage it, [instructions for deployment](https://www.pgadmin.org/download/pgadmin-4-apt/))
+  * To start PostgreSQL CLI, `sudo -u postgres psql`
+  * To send a command, `sudo su - postgres -c "COMMAND"` 
+  * To list databases, `\l`
 
 ### About graphics
 * Charts were rendered with [Chart.js](https://www.chartjs.org/docs/latest/)
