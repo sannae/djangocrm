@@ -2,10 +2,11 @@
 :snake: A little project to create a CRM web application with [Django](https://www.djangoproject.com/) using [Dennis Ivy](https://github.com/divanov11)'s [YouTube tutorial](https://youtube.com/playlist?list=PL-51WBLyFTg2vW-_6XBoUpE7vpmoR3ztO).
 
 ## :pushpin: To do
-### Bugfixes
+### Bugfixes/Partial
 - [ ] Fix the problem with deleting the user's profile pic in the user profile page
 - [ ] Fix the DateTime format (European?) in the order filter in the Customer page
 - [ ] Fix the Update_order view with OrderFormSet instead of Form
+- [ ] Test the Reset Password features with another email
 ### Features
 - [ ] Replace the status cells with [stats charts](https://testdriven.io/blog/django-charts/) (e.g. orders of the months, customers acquired, etc.).
 - [ ] Keep the CreateCustomer button on the dashboard, or restrict the customer's creation permission to admin?
@@ -63,6 +64,12 @@ A schematic view is available below:
 * There are several user Groups, each one for each region: by adding users in these Groups (Django allows the many-to-many relationship between users and groups), they will be able to see only the customers coming from the corresponding regions and their orders. These users also can be created only from the Django admin panel.
 * The last special user Group is called `Customers`: they can only view their profile page, containing their orders. These user are automatically created during user registration. A corresponding Customer is created with the same name and email as the user.
 * To filter users depending on their associated groups, you can use a [custom template tag](https://docs.djangoproject.com/en/1.11/howto/custom-template-tags/). In this case we created a [`has_group.py`](./accounts/templatetags/has_group.py) file, which then needs to be loaded with the `{% load has_group %}` tag in the HTML template requiring it. A better description can be found in [this Stackoverflow post](https://stackoverflow.com/questions/34571880/how-to-check-in-template-if-user-belongs-to-a-group).
+
+### Sending emails to reset the user's password
+* The main settings are saved in the `settings.py` file under the `EMAIL_` parameters
+* In our example, Gmail was used as the SMTP host; any external login attempt would be blocked by default by Gmail unless you allow "less secure apps" access ([here](https://myaccount.google.com/lesssecureapps)'s the link). BTW it doesn't work directly with MFA accounts, where you'd need a specific [App password](https://support.google.com/accounts/answer/185833?hl=en).
+* The `urls.py` must met specific criteria: use the predefined [Authentication Views](https://docs.djangoproject.com/en/3.2/topics/auth/default/#module-django.contrib.auth.views) from `django.contrib.auth` and remember to use the corresponding URLs' names
+* If you want to customize all the pre-built forms used by Django's Authentication Views, you can find the templates' names within their [definitions](https://github.com/django/django/blob/master/django/contrib/auth/views.py). Override the default in your `urls.py` by specifying `.as_view(template_name="accounts/TEMPLATE_NAME.html")` in the URL line
 
 ### About database and relationships
 * To initiate the database, run `py -m manage migrate`: the database's settings are in `SETTINGS.py` and SQLite3 is the default.

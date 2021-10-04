@@ -21,8 +21,7 @@ from django.contrib import messages
 # Because Django will automatically look for them there
 
 # Register
-# Only unauthenticated users
-@unauthenticated_user
+@unauthenticated_user # Only unauthenticated users
 def registerPage(request):
     form = CreateUserForm()
     if request.method == "POST":
