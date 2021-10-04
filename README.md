@@ -7,16 +7,15 @@
 - [ ] Fix the DateTime format (European?) in the order filter in the Customer page
 - [ ] Fix the Update_order view with OrderFormSet instead of Form
 ### Features
+- [ ] Replace the status cells with [stats charts](https://testdriven.io/blog/django-charts/) (e.g. orders of the months, customers acquired, etc.).
 - [ ] Keep the CreateCustomer button on the dashboard, or restrict the customer's creation permission to admin?
 - [ ] Move the JS scripts (mostly the charts in the dashboard) to a separate file, still keeping the Django template tags
 - [ ] Add a [choropleth map](https://github.com/sgratzl/chartjs-chart-geo) divided by Region in the dashboard
 - [ ] Create a `populate-db.py` function to fill the database with random Data using the model definitions
-### Hopefully do
-* Add the Region property to the customers and to the users, and then make the user see only the customers from the assigned region. The solution with User Groups described below is just a workaround.
-* Replace the status cells with [stats charts](https://testdriven.io/blog/django-charts/) (e.g. orders of the months, customers acquired, etc.).
-* Internationalization (it/en)
-* Add a [chatbot](https://www.datacamp.com/community/tutorials/building-a-chatbot-using-chatterbot) for customer's support
-* Integrate Google APIs?
+- [ ] Internationalization (it/en)
+- [ ] Add the "Region" property to the customers and to the users, and then make the user see only the customers from the assigned region. The solution with User Groups described below is just a workaround.
+- [ ] Add a [chatbot](https://www.datacamp.com/community/tutorials/building-a-chatbot-using-chatterbot) for customer's support - visible only on the customer's own page
+- [ ] Integrate Google APIs (like Maps to get the customer's address)?
 
 ## Requirements
 * [Python](https://www.python.org/downloads/)
@@ -75,7 +74,7 @@ A schematic view is available below:
      1) Example: to retrieve all the customers saved with the `Customer` method, run `Customer.objects.all()`
      2) Example: to retrieve all the customers with a specific name, run `Customer.objects.all().filter(name="YOURNAME")`
 
-## About graphics
+### About graphics
 * Charts were rendered with [Chart.js](https://www.chartjs.org/docs/latest/)
 
 ## **Definitely** review:
