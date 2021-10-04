@@ -31,15 +31,7 @@ def registerPage(request):
             user = form.save()
             username = form.cleaned_data.get('username')
             email = form.cleaned_data.get('email')
-            # Assign default group
-            group = Group.objects.get(name='Customers')
-            user.groups.add(group)
-            # Create a customer assigned to new user upon registration 
-            Customer.objects.create(
-                user=user,
-                name=username,
-                email=email
-            )
+
             # Flash message: doc at https://docs.djangoproject.com/en/3.0/ref/contrib/messages/#using-messages-in-views-and-templates
             messages.success(request, 'Account was created for ' + username)
             return redirect('login') 
