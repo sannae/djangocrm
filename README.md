@@ -9,9 +9,9 @@ I used [Django](), [Chartjs](), [SQLite](), [PostgreSQL]()
 - [ ] Fix the DateTime format (European?) in the order filter in the Customer page
 - [ ] Fix the Update_order view with OrderFormSet instead of Form
 - [ ] Test the Reset Password features with another email
+- [ ] Decouple the database connection parameters into a separate file not tracked by Git, see [this answer](https://stackoverflow.com/questions/42077532/django-security-and-settings)
 ### Features
 - [ ] Replace the status cells with [stats charts](https://testdriven.io/blog/django-charts/) (e.g. orders of the months, customers acquired, etc.).
-- [ ] Decouple the database connection parameters into a separate file not tracked by Git, see [this answer](https://stackoverflow.com/questions/42077532/django-security-and-settings)
 - [ ] Keep the CreateCustomer button on the dashboard, or restrict the customer's creation permission to admin?
 - [ ] Move the JS scripts (mostly the charts in the dashboard) to a separate file, still keeping the Django template tags
 - [ ] Add a [choropleth map](https://github.com/sgratzl/chartjs-chart-geo) divided by Region in the dashboard
