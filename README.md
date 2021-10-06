@@ -1,6 +1,8 @@
 # djangocrm
 :snake: A little project to create a CRM web application with [Django](https://www.djangoproject.com/) using [Dennis Ivy](https://github.com/divanov11)'s [YouTube tutorial](https://youtube.com/playlist?list=PL-51WBLyFTg2vW-_6XBoUpE7vpmoR3ztO).
 
+I used [Django](), [Chartjs](), [SQLite](), [PostgreSQL]()
+
 ## :pushpin: To do
 ### Bugfixes/Partial
 - [ ] Fix the problem with deleting the user's profile pic in the user profile page
@@ -48,7 +50,7 @@ A schematic view is available below:
 * :warning: Do _not_ comment Django template tags with usual HTML comments, as described [here](https://stackoverflow.com/questions/62793267/reverse-for-create-order-with-no-arguments-not-found)!! 
 ```html
 <!-- this is the usual HTML comment -->
-<!-- {% This is a Django tag %} -->
+<!-- {% This is an uncommented Django tag %} -->
 <!-- {#% This is a commented Django tag %#} -->
 ```
 
