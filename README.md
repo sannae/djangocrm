@@ -11,10 +11,11 @@ I used [Django](), [Chartjs](), [SQLite](), [PostgreSQL]()
 - [ ] Test the Reset Password features with another email
 ### Features
 - [ ] Replace the status cells with [stats charts](https://testdriven.io/blog/django-charts/) (e.g. orders of the months, customers acquired, etc.).
+- [ ] Decouple the database connection parameters into a separate file not tracked by Git, see [this answer](https://stackoverflow.com/questions/42077532/django-security-and-settings)
 - [ ] Keep the CreateCustomer button on the dashboard, or restrict the customer's creation permission to admin?
 - [ ] Move the JS scripts (mostly the charts in the dashboard) to a separate file, still keeping the Django template tags
 - [ ] Add a [choropleth map](https://github.com/sgratzl/chartjs-chart-geo) divided by Region in the dashboard
-- [ ] Create a `populate-db.py` function to fill the database with random Data using the model definitions
+- [ ] Create a `populate-db.py` function to fill the database with random Data using the model definitions, see [the one used here](https://testdriven.io/blog/django-charts/)
 - [ ] Internationalization (it/en)
 - [ ] Add the "Region" property to the customers and to the users, and then make the user see only the customers from the assigned region. The solution with User Groups described below is just a workaround.
 - [ ] Add a [chatbot](https://www.datacamp.com/community/tutorials/building-a-chatbot-using-chatterbot) for customer's support - visible only on the customer's own page
