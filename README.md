@@ -15,7 +15,6 @@ I used [Django](), [Chartjs](), [SQLite](), [PostgreSQL]()
 - [ ] Keep the CreateCustomer button on the dashboard, or restrict the customer's creation permission to admin?
 - [ ] Move the JS scripts (mostly the charts in the dashboard) to a separate file, still keeping the Django template tags
 - [ ] Add a [choropleth map](https://github.com/sgratzl/chartjs-chart-geo) divided by Region in the dashboard
-- [ ] Create a `populate-db.py` function to fill the database with random Data using the model definitions, see [the one used here](https://testdriven.io/blog/django-charts/)
 - [ ] Internationalization (it/en)
 - [ ] Add the "Region" property to the customers and to the users, and then make the user see only the customers from the assigned region. The solution with User Groups described below is just a workaround.
 - [ ] Add a [chatbot](https://www.datacamp.com/community/tutorials/building-a-chatbot-using-chatterbot) for customer's support - visible only on the customer's own page
@@ -83,10 +82,15 @@ A schematic view is available below:
   3) Specific tables are then available as objects with `TABLENAME.objects.all()` and other methods. 
      1) Example: to retrieve all the customers saved with the `Customer` method, run `Customer.objects.all()`
      2) Example: to retrieve all the customers with a specific name, run `Customer.objects.all().filter(name="YOURNAME")`
-* To pass from the native Sqlite3 to PostgreSQL (and use PGAdmin to manage it, [instructions for deployment](https://www.pgadmin.org/download/pgadmin-4-apt/))
+* A function to specifically create random orders was implemented in the `management\commands\populate-db.py` function, inspired by [this article](https://testdriven.io/blog/django-charts/).
+#### Postgresql
+* After first testing, we migrated the db from SQLite to PostgreSQL using [these instructions](https://medium.com/djangotube/django-sqlite-to-postgresql-database-migration-e3c1f76711e1).
   * To start PostgreSQL CLI, `sudo -u postgres psql`
   * To send a command, `sudo su - postgres -c "COMMAND"` 
   * To list databases, `\l`
+  * To choose a database, `\c DATABASE_NAME`
+  * To show all the tables in the database, `\dt`
+  * To look for a specific table in the database, `\dt *PATTERN*`
 
 ### About graphics
 * Charts were rendered with [Chart.js](https://www.chartjs.org/docs/latest/)
