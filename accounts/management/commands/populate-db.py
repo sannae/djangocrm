@@ -17,12 +17,13 @@ class Command(BaseCommand):
     # Amount of orders
     def add_arguments(self, parser):
         parser.add_argument('--amount', type=int, help='The number of orders that should be created.')
-
+        parser.add_argument('--days', type=int, help='The max amount of days in the past')
 
     def handle(self, *args, **options):
         customers = Customer.objects.all()
         products = Product.objects.all()
         amount = options['amount'] if options['amount'] else 2500
+        days = options['days'] if options['days'] else 30
         
         statuses = (
             ('Pending','Pending'),
@@ -39,7 +40,7 @@ class Command(BaseCommand):
                 status=random.choice(statuses)[0],
             )
             # Random day in the last N days
-            dt = pytz.utc.localize(datetime.now() - timedelta(days=random.randint(0, 30)))
+            dt = pytz.utc.localize(datetime.now() - timedelta(days=random.randint(0, days)))
             order.date_created = dt
 
             # Save date in notes

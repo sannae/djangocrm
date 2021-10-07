@@ -17,6 +17,7 @@ I used [Django](), [Chartjs](), [SQLite](), [PostgreSQL]()
 - [ ] Add a [choropleth map](https://github.com/sgratzl/chartjs-chart-geo) divided by Region in the dashboard
 - [ ] Internationalization (it/en)
 - [ ] Add the "Region" property to the customers and to the users, and then make the user see only the customers from the assigned region. The solution with User Groups described below is just a workaround.
+- [ ] Customize the Admin panel
 - [ ] Add a [chatbot](https://www.datacamp.com/community/tutorials/building-a-chatbot-using-chatterbot) for customer's support - visible only on the customer's own page
 - [ ] Integrate Google APIs (like Maps to get the customer's address)?
 
