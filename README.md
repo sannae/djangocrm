@@ -10,7 +10,7 @@ I used [Django](), [Chartjs](), [SQLite](), [PostgreSQL]()
 - [ ] Fix the Update_order view with OrderFormSet instead of Form
 - [ ] Test the Reset Password features with another email
 ### Features
-- [ ] Replace the status cells with [stats charts](https://testdriven.io/blog/django-charts/) (e.g. orders of the months, customers acquired, etc.).
+- [ ] Add a third bar chart in the dashboard (products of the month?)
 - [ ] Keep the CreateCustomer button on the dashboard, or restrict the customer's creation permission to admin?
 - [ ] Move the JS scripts (mostly the charts in the dashboard) to a separate file, still keeping the Django template tags
 - [ ] Add a [choropleth map](https://github.com/sgratzl/chartjs-chart-geo) divided by Region in the dashboard
