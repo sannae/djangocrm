@@ -13,7 +13,10 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 # Main configuration file for the Django app
 
 import os
+import json
+from django.core.exceptions import ImproperlyConfigured
 from pathlib import Path
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,8 +24,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
+# Secrets
+with open(os.path.join(BASE_DIR, 'secrets.json')) as secrets_file:
+    secrets = json.load(secrets_file)
+
+def get_secret(setting, secrets=secrets):
+    """Get secret setting or fail with ImproperlyConfigured"""
+    try:
+        return secrets[setting]
+    except KeyError:
+        raise ImproperlyConfigured("Set the {} setting".format(setting))
+
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-)3pbb4xyzocl8y!nu6(60g$-zvg1alrne%78w@f!5+rne9by5$'
+SECRET_KEY = get_secret('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -87,8 +101,8 @@ DATABASES = {
         # Postgresql
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'accounts',
-        'USER': 'edo',
-        'PASSWORD': 'PosEdoGres!',
+        'USER': get_secret('DB_USER'),
+        'PASSWORD': get_secret('DB_PASSWORD'),
         'HOST': 'localhost',
         'PORT': 5432
 
@@ -156,3 +170,4 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = '' # your Gmail address here
 EMAIL_HOST_PASSWORD = '' # your Gmail password
+

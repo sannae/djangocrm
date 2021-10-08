@@ -9,7 +9,6 @@ I used [Django](), [Chartjs](), [SQLite](), [PostgreSQL]()
 - [ ] Fix the DateTime format (European?) in the order filter in the Customer page
 - [ ] Fix the Update_order view with OrderFormSet instead of Form
 - [ ] Test the Reset Password features with another email
-- [ ] Decouple the database connection parameters into a separate file not tracked by Git, see [this answer](https://stackoverflow.com/questions/42077532/django-security-and-settings)
 ### Features
 - [ ] Replace the status cells with [stats charts](https://testdriven.io/blog/django-charts/) (e.g. orders of the months, customers acquired, etc.).
 - [ ] Keep the CreateCustomer button on the dashboard, or restrict the customer's creation permission to admin?
@@ -54,6 +53,7 @@ A schematic view is available below:
 <!-- {% This is an uncommented Django tag %} -->
 <!-- {#% This is a commented Django tag %#} -->
 ```
+* General application secrets (i.e. database user, database password, secret key, etc.) are decoupled from the application with a JSON file not tracked by Git and using the `get_secret` function in `settings.py`
 
 ### About user authentication
 <!-- Test credentials: `*`,`T1234Edo!`-->

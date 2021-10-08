@@ -1,5 +1,5 @@
 # Private files
-private.md
+/secrets.json
 
 # Pycache
 __pycache__/
