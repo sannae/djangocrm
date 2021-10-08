@@ -6,7 +6,7 @@ I used [Django](), [Chartjs](), [SQLite](), [PostgreSQL]()
 ## :pushpin: To do
 ### Bugfixes/Partial
 - [ ] Fix the problem with deleting the user's profile pic in the user profile page
-- [ ] Fix the DateTime format (European?) in the order filter in the Customer page
+- [ ] Fix the DateTime format (European?) in the order filter in the Customer page: **update** almost there, but the orders included in the EndDate are filtered away (because >= 'EndDate 00:00:00', the filters need to be improved)
 - [ ] Fix the Update_order view with OrderFormSet instead of Form
 - [ ] Test the Reset Password features with another email
 ### Features

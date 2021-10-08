@@ -171,3 +171,8 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = '' # your Gmail address here
 EMAIL_HOST_PASSWORD = '' # your Gmail password
 
+# Custom datetime format
+
+DATE_INPUT_FORMATS = [
+    '%d-%m-%Y'              # '2006-10-25'
+]
