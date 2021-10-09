@@ -11,7 +11,7 @@ colorama==0.3.7
 configobj==5.0.6
 cryptography==2.6.1
 distlib==0.3.3
-distro-info==0.21
+distro-info
 Django==3.2.6
 django-filter==2.4.0
 docutils==0.14
