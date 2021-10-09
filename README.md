@@ -1,7 +1,7 @@
 # djangocrm
 :snake: A little project to create a CRM web application with [Django](https://www.djangoproject.com/) using [Dennis Ivy](https://github.com/divanov11)'s [YouTube tutorial](https://youtube.com/playlist?list=PL-51WBLyFTg2vW-_6XBoUpE7vpmoR3ztO).
 
-I used [Django](), [Chartjs](), [SQLite](), [PostgreSQL]()
+I used [Django](), [Chartjs](), [SQLite](), [PostgreSQL](), [Bootstrap]()
 
 ## :pushpin: To do
 ### Bugfixes/Partial
@@ -56,8 +56,6 @@ A schematic view is available below:
 * General application secrets (i.e. database user, database password, secret key, etc.) are decoupled from the application with a JSON file not tracked by Git and using the `get_secret` function in `settings.py`
 
 ### About user authentication
-<!-- Test credentials: `*`,`T1234Edo!`-->
-<!-- admin credentials: `Admin1234!` -->
 * To restrict the user's login, add the `@login_required(login_url='login')` decorator from `django.contrib.auth.decorators` above any restricted view in `views.py` [**manual method**]
 * Likewise, you don't want any logged-in user to be able to access the `'login'` or the `'register'` page: add the `if request.user.is_authenticated` in those views to handle it [ **manual method** ]
 * Decorators can be listed in a dedicated `\APPNAME\decorators.py` file. A **decorator** is a function that takes another function as a parameter. Decorators are called with the `@` symbol
@@ -95,6 +93,12 @@ A schematic view is available below:
 
 ### About graphics
 * Charts were rendered with [Chart.js](https://www.chartjs.org/docs/latest/)
+
+### About deployment
+* To deploy on [Heroku](), your project needs the [Gunicorn]() and [Whitenoise]() pip modules installed
+  * After logging in (`heroku login -i`), connect to your Heroku app using the Heroku CLI an running `heroku git:remote --app=HEROKU_APP_NAME` to add a remote origin to your Git tracking in the project
+  * Add a [`procfile`](https://devcenter.heroku.com/articles/procfile) (no extension!) to your project: it's needed by Heroku to specify a process type. Inside of it, just type `web: gunicorn YOUR_APP_WSGI_NAME.wsgi --log-file -`
+  * Remember to specific a _build pack_ (i.e. Python) in your Heroku app settings
 
 ## **Definitely** review:
 * [Forms](https://docs.djangoproject.com/en/3.2/topics/forms/) and [Formsets](https://docs.djangoproject.com/en/3.2/topics/forms/formsets/)
