@@ -1,7 +1,7 @@
 # djangocrm
 :snake: A little project to create a CRM web application with [Django](https://www.djangoproject.com/) using [Dennis Ivy](https://github.com/divanov11)'s [YouTube tutorial](https://youtube.com/playlist?list=PL-51WBLyFTg2vW-_6XBoUpE7vpmoR3ztO).
 
-I used [Django](), [Chartjs](), [SQLite](), [PostgreSQL](), [Bootstrap]()
+I used [Django](), [Chartjs](), [SQLite](), [PostgreSQL](), [Bootstrap](), [AWS S3]().
 
 ## :pushpin: To do
 ### Bugfixes/Partial
