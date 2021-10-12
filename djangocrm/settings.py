@@ -42,7 +42,7 @@ SECRET_KEY = get_secret('SECRET_KEY')
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    get_secret('HEROKU_HOST'),
+    # get_secret('HEROKU_HOST'),  
     "127.0.0.1"
     ]
 

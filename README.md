@@ -98,6 +98,9 @@ A schematic view is available below:
 * Charts were rendered with [Chart.js](https://www.chartjs.org/docs/latest/)
 
 ### About deployment
+* Before deploying, remember to
+  * Turn `Debug = FALSE` in `settings.py`
+  * Add the remote host to the `ALLOWED_HOSTS` in `settings.py`
 * To deploy on [Heroku](), your project needs the [Gunicorn]() and [Whitenoise]() pip modules installed
   * After logging in (`heroku login -i`), connect to your Heroku app using the Heroku CLI an running `heroku git:remote --app=HEROKU_APP_NAME` to add a remote origin to your Git tracking in the project
   * Add a [`procfile`](https://devcenter.heroku.com/articles/procfile) (no extension!) to your project: it's needed by Heroku to specify a process type. Inside of it, just type `web: gunicorn YOUR_APP_WSGI_NAME.wsgi --log-file -`
