@@ -12,6 +12,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from django.contrib import messages
+from collections import Counter
 
 # Our views, i.e. the rendered pages where the URLs will redirect
 
@@ -130,6 +131,13 @@ def home(request):
         out_for_delivery_cumulated.append(cumulated_out_for_delivery)
         pending_cumulated.append(cumulated_pending)
 
+    # Products sold in the current month
+    products_this_month = []
+    for i in range(len(orders_this_month)):
+        products_this_month.append(orders_this_month[i].product.name)
+    products_this_month_total = Counter(products_this_month)
+    prod_this_months_names = list(dict(products_this_month_total).keys())
+    prod_this_months_values = list(dict(products_this_month_total).values())
 
     # Context to be passed to the template
     context = {
@@ -144,7 +152,9 @@ def home(request):
         'orders_cumulated':orders_cumulated,
         'delivered_cumulated':delivered_cumulated,
         'out_for_delivery_cumulated':out_for_delivery_cumulated,
-        'pending_cumulated':pending_cumulated
+        'pending_cumulated':pending_cumulated,
+        'prod_this_month_names':prod_this_months_names,
+        'prod_this_month_values':prod_this_months_values
     }
 
     return render(request, 'accounts/dashboard.html', context)

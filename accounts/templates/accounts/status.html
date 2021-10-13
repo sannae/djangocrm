@@ -7,7 +7,7 @@
 		<div class="col-md">
 			<div class="card text-center text-white  mb-3" id="total-orders">
 			  	<div class="card-header">
-			  		<h5 class="card-title">Total Orders</h5>
+			  		<h5 class="card-title">Total orders</h5>
 			  	</div>
 			  	<div class="card-body">
 					  <!--
@@ -15,7 +15,6 @@
 					  -->
 					  <canvas id="myPieChart" style="position: relative; height:50px; width:100px"></canvas> 
 
-					</canvas>
 				</div>
 			</div>
 		</div>
@@ -27,12 +26,12 @@
 			  	<div class="card-header">
 			  		<h5 class="card-title">Orders this month</h5>
 			  	</div>
-			  	<!-- <div class="card-body"> -->
+			  	<div class="card-body"> 
 					  <!--
 			    	<h3 class="card-title">{{ delivered_orders}}</h3>
 					  -->
 					  <div> <canvas id="myLineChart" style="position: relative; height:50px; width:100px"></canvas>	</div>
-			  	<!-- </div> -->
+			  	</div>
 			</div>
 		</div>
 	</div>
@@ -41,12 +40,12 @@
 		<div class="col-md">
 			<div class="card text-center text-white  mb-3" id="orders-pending">
 			  	<div class="card-header">
-			  		<h5 class="card-title">Orders Pending</h5>
+			  		<h5 class="card-title">Products this month</h5>
 			  	</div>
-			  	<div class="card-body">
-			    	<h3 class="card-title">{{ pending_orders }}</h3>
-			  	</div>
-			</div>
+				  <div class="card-body">
+			    	<!-- <h3 class="card-title">{{ pending_orders }}</h3> -->
+					<div> <canvas id="myBarChart" style="position: relative; height:50px; width:100px"></canvas>	</div>
+				</div>
 		</div>
 	</div>
 </div>
