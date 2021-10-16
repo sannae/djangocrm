@@ -101,11 +101,12 @@ A schematic view is available below:
 * Before deploying, remember to
   * Turn `Debug = FALSE` in `settings.py`
   * Add the remote host to the `ALLOWED_HOSTS` in `settings.py`
-* To deploy on [Heroku](), your project needs the [Gunicorn]() and [Whitenoise]() pip modules installed
+* To deploy on [Heroku](), your project needs the [Gunicorn]() and [Whitenoise](http://whitenoise.evans.io/en/stable/) pip modules installed
   * After logging in (`heroku login -i`), connect to your Heroku app using the Heroku CLI an running `heroku git:remote --app=HEROKU_APP_NAME` to add a remote origin to your Git tracking in the project
   * Add a [`procfile`](https://devcenter.heroku.com/articles/procfile) (no extension!) to your project: it's needed by Heroku to specify a process type. Inside of it, just type `web: gunicorn YOUR_APP_WSGI_NAME.wsgi --log-file -`
   * Remember to specific a _build pack_ (i.e. Python) in your Heroku app settings
   * In the manual deploy from the Heroku app page, you may need to remove some specific requirements' versions (as described in [this post](https://stackoverflow.com/questions/47304291/heroku-upload-could-not-find-a-version-that-satisfies-the-requirement-anaconda/56754565)) from `requirements.txt` (but first, remember to [check this](#pip-freeze-warning)!)
+  * Heroku doesn't know how to serve static files, so it is better to install [Whitenoise](http://whitenoise.evans.io/en/stable/) and use it in the `MIDDLEWARE` section of your `settings.py` file
 
 ## **Definitely** review:
 * [Forms](https://docs.djangoproject.com/en/3.2/topics/forms/) and [Formsets](https://docs.djangoproject.com/en/3.2/topics/forms/formsets/)
