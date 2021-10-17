@@ -12,8 +12,25 @@
 
 <!-- A row -->
 <div class="row">
-    <!-- A column of 5 cells -->
-	<div class="col-md-5">
+
+    <!-- A column of 2 cells -->
+	<div class="col-md-2">
+		<h5>LAST UPDATES:</h5>
+		<hr>
+        <!-- Bootstrap's "card styling" -->
+		<div class="card card-body">
+			<!-- A button -->
+			<table class="table table-sm">
+				<tr>
+
+				</tr>
+
+			</table>
+		</div>
+	</div>
+
+    <!-- A column of 3 cells -->
+	<div class="col-md-3">
 		<h5>LAST 5 CUSTOMERS ACQUIRED:</h5>
 		<hr>
         <!-- Bootstrap's "card styling" -->
@@ -23,16 +40,20 @@
 			<table class="table table-sm">
 				<tr>
 					<!-- Headers -->
-					<th></th>					<!-- just spacing -->
 					<th>Customer</th>
+					<th>Region</th>					<!-- just spacing -->
 					<th>Phone</th>
 					
 					<!-- Dynamic tag loading from the customers dictionary passed by the view -->
 					{% for customer in customers %}
 					<tr>
 						<!-- href to the customer url, referencing to the customer id -->
-						<td><a href="{% url 'customer' customer.id %}" class="btn btn-sm btn-info">View</a></td>
-						<td>{{ customer.name }}</td>
+						<td><a href="{% url 'customer' customer.id %}" class="btn btn-sm btn-info">{{ customer.name }}</a></td>
+						{% if customer.region == None %}
+							<td id="no-region">No region</td>
+						{% else %}
+							<td>{{ customer.region}}</td>
+						{% endif %}
 						<td>{{ customer.phone }}</td>
 					</tr>
 					{% endfor %}

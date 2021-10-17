@@ -20,6 +20,10 @@ body{
     color: green;
 }
 
+#no-region{
+    color: #BC4639;
+}
+
 /* Info buttons */
 .btn-info{
     background-color: #4285F4 !important;
