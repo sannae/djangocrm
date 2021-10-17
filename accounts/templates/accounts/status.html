@@ -3,18 +3,20 @@
 <br>
 <!-- It's basically a row with 3 columns -->
 <div class="row">
+
 	<div class="col">
 		<div class="col-md">
 			<div class="card text-center text-white  mb-3" id="total-orders">
-			  	<div class="card-header">
-			  		<h5 class="card-title">Total orders</h5>
-			  	</div>
-			  	<div class="card-body">
-					  <!--
+				<div class="card-header">
+					<h5 class="card-title">Total orders</h5>
+				</div>
+				<div class="card-body">
+					<!--
 			    	<h3 class="card-title">{{ total_orders }}</h3>
 					  -->
-					  <canvas id="myPieChart" style="position: relative; height:50px; width:100px"></canvas> 
-
+					<div>
+						<canvas id="myPieChart"></canvas>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -23,15 +25,17 @@
 	<div class="col">
 		<div class="col-md">
 			<div class="card text-center text-white  mb-3" id="orders-delivered">
-			  	<div class="card-header">
-			  		<h5 class="card-title">Orders this month</h5>
-			  	</div>
-			  	<div class="card-body"> 
-					  <!--
+				<div class="card-header">
+					<h5 class="card-title">Orders this month</h5>
+				</div>
+				<div class="card-body">
+					<!--
 			    	<h3 class="card-title">{{ delivered_orders}}</h3>
 					  -->
-					  <div> <canvas id="myLineChart" style="position: relative; height:50px; width:100px"></canvas>	</div>
-			  	</div>
+					<div>
+						<canvas id="myLineChart"></canvas>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -39,15 +43,17 @@
 	<div class="col">
 		<div class="col-md">
 			<div class="card text-center text-white  mb-3" id="orders-pending">
-			  	<div class="card-header">
-			  		<h5 class="card-title">Products this month</h5>
-			  	</div>
-				  <div class="card-body">
-			    	<!-- <h3 class="card-title">{{ pending_orders }}</h3> -->
-					<div> <canvas id="myBarChart" style="position: relative; height:50px; width:100px"></canvas>	</div>
+				<div class="card-header">
+					<h5 class="card-title">Products this month</h5>
 				</div>
+				<div class="card-body">
+					<!-- <h3 class="card-title">{{ pending_orders }}</h3> -->
+					<div>
+						<canvas id="myBarChart"></canvas>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
+	
 </div>
-
-

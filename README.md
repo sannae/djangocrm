@@ -107,6 +107,7 @@ A schematic view is available below:
   * Remember to specific a _build pack_ (i.e. Python) in your Heroku app settings
   * In the manual deploy from the Heroku app page, you may need to remove some specific requirements' versions (as described in [this post](https://stackoverflow.com/questions/47304291/heroku-upload-could-not-find-a-version-that-satisfies-the-requirement-anaconda/56754565)) from `requirements.txt` (but first, remember to [check this](#pip-freeze-warning)!)
   * Heroku doesn't know how to serve static files, so it is better to install [Whitenoise](http://whitenoise.evans.io/en/stable/) and use it in the `MIDDLEWARE` section of your `settings.py` file
+* To deploy on [Docker]()
 
 ## **Definitely** review:
 * [Forms](https://docs.djangoproject.com/en/3.2/topics/forms/) and [Formsets](https://docs.djangoproject.com/en/3.2/topics/forms/formsets/)
