@@ -1,7 +1,19 @@
 # djangocrm
 :snake: A little project to create a CRM web application with [Django](https://www.djangoproject.com/) using [Dennis Ivy](https://github.com/divanov11)'s [YouTube tutorial](https://youtube.com/playlist?list=PL-51WBLyFTg2vW-_6XBoUpE7vpmoR3ztO).
 
-I used [Django](), [Chartjs](), [SQLite](), [PostgreSQL](), [Bootstrap](), [AWS S3]().
+I added the following features:
+* Users can be added by both admin and with self-sign-up
+* Internal agents can be assigned to a specific Region (aka a User Group), so the dashboard will filter products, customers and orders coming only from the  selected Region
+* The total amounts on the status bar were replaced with status charts
+
+Tech stack:
+
+<img src="https://static.djangoproject.com/img/logos/django-logo-negative.svg" alt="Django" height="50px">
+<img src="https://www.chartjs.org/img/chartjs-logo.svg" alt="ChartJS" height="50px">
+<img src="https://www.sqlite.org/images/sqlite370_banner.gif" alt="SQLite" height="50px">
+<img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg" alt="PostgreSQL" height="50px">
+<img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Bootstrap_logo.svg" alt="Bootstrap" height="50px">
+<img src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Amazon-S3-Logo.svg" alt="AWS S3" height="50px">
 
 ## :pushpin: To do
 ### Bugfixes/Partial
