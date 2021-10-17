@@ -62,7 +62,7 @@
         'rgb(255, 178, 102)'   // Orange
     ],
         borderColor: '#FFF',
-        hoverOffset: 4
+        hoverOffset: 4,
     }]
 };
 
@@ -107,14 +107,14 @@
             data: {{ pending_cumulated | safe }},
             borderColor: 'rgb(153, 0, 0)',
             borderWidth: 1,
-            hoverOffset: 4            
+            hoverOffset: 4       
         },
         {
             label: 'Out for delivery',
             data: {{ out_for_delivery_cumulated | safe }},
             borderColor: 'rgb(255, 178, 102)',
             borderWidth: 1,
-            hoverOffset: 4   
+            hoverOffset: 4
         },
         {
             label: 'Delivered',

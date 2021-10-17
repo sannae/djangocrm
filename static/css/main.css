@@ -5,26 +5,36 @@ logo{
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 body{
     font-family: 'Roboto', sans-serif !important;
-    background-color: #ebeff5 !important;
+    background-color: #F3E0DC !important;
 }
 
 .row{
     margin: auto;
 }
 
-#total-orders{
-    background-color: #4cb4c7;
-}
-
-#orders-delivered{
-    background-color: #86df8d;
-}
-
-#orders-pending{
-    background-color: #d17c7c;
+#total-orders, #orders-delivered, #orders-pending{
+    background-color: #D4A59A;
 }
 
 #delivered{
     color: green;
 }
 
+/* Info buttons */
+.btn-info{
+    background-color: #4285F4 !important;
+}
+
+/* Red buttons */
+.btn-danger{
+    background-color: #BC4639 !important;
+}
+
+/* Navigation bar */
+.bg-dark{
+    background-color: #5C2018 !important;
+}
+
+.card{
+    border-radius: 0 !important;
+}
