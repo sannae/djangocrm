@@ -108,6 +108,7 @@ A schematic view is available below:
 
 ### About graphics
 * Charts were rendered with [Chart.js](https://www.chartjs.org/docs/latest/)
+* Color palettes are inspired by [this list of color schemes for websites](https://visme.co/blog/website-color-schemes/)
 
 ### About deployment
 * Before deploying, remember to
