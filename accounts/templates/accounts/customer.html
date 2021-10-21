@@ -26,6 +26,7 @@
 		<div class="card card-body">
 			<h5>Contact Information</h5>
 			<hr>
+			<p><img class="profile-pic" src="{{ request.user.customer.profile_pic.url}}"></p>
 			<p><b>Email:</b> {{ customer.email }}</p>
 			<p><b>Phone:</b> {{ customer.phone }}</p>
 			<p><b>Address:</b> {{ customer.address }}</p>

@@ -1,6 +1,7 @@
 from accounts.decorators import *
 from datetime import datetime
 import calendar
+from django.db.models import Count
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.forms import inlineformset_factory
@@ -139,6 +140,15 @@ def home(request):
     prod_this_months_names = list(dict(products_this_month_total).keys())
     prod_this_months_values = list(dict(products_this_month_total).values())
 
+    # Compute the customer with most purchases in the month
+    customers_this_month = []
+    for o in range(len(orders_this_month)):
+        customers_this_month.append(orders_this_month[o].customer)
+    best_customer_month = list(dict(Counter(customers_this_month)))[0]
+
+    # Find oldest customer
+
+
     # Context to be passed to the template
     context = {
         'orders':orders[0:5], # Last 5 orders
@@ -154,7 +164,8 @@ def home(request):
         'out_for_delivery_cumulated':out_for_delivery_cumulated,
         'pending_cumulated':pending_cumulated,
         'prod_this_month_names':prod_this_months_names,
-        'prod_this_month_values':prod_this_months_values
+        'prod_this_month_values':prod_this_months_values,
+        'best_customer_month':best_customer_month
     }
 
     return render(request, 'accounts/dashboard.html', context)
