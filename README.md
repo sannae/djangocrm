@@ -6,14 +6,18 @@ I added the following features:
 * Internal agents can be assigned to a specific Region (aka a User Group), so the dashboard will filter products, customers and orders coming only from the  selected Region
 * The total amounts on the status bar were replaced with status charts
 
-Tech stack:
+Last screenshot:
+<img src="last-screenshot.png" alt="screenshot">
 
+Tech stack:
+<p style="align: center">
 <img src="https://static.djangoproject.com/img/logos/django-logo-negative.svg" alt="Django" height="50px">
 <img src="https://www.chartjs.org/img/chartjs-logo.svg" alt="ChartJS" height="50px">
 <img src="https://www.sqlite.org/images/sqlite370_banner.gif" alt="SQLite" height="50px">
 <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg" alt="PostgreSQL" height="50px">
 <img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Bootstrap_logo.svg" alt="Bootstrap" height="50px">
 <img src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Amazon-S3-Logo.svg" alt="AWS S3" height="50px">
+</p>
 
 ## :pushpin: To do
 ### Bugfixes/Partial
@@ -108,7 +112,7 @@ A schematic view is available below:
 
 ### About graphics
 * Charts were rendered with [Chart.js](https://www.chartjs.org/docs/latest/)
-* Color palettes are inspired by [this list of color schemes for websites](https://visme.co/blog/website-color-schemes/)
+* Color palettes are inspired by [this list of color schemes for websites](https://visme.co/blog/website-color-schemes/), e.g. n.19 and n.35
 
 ### About deployment
 * Before deploying, remember to
