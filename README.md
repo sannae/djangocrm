@@ -5,6 +5,7 @@ I added the following features:
 * Users can be added by both admin and with self-sign-up
 * Internal agents can be assigned to a specific Region (aka a User Group), so the dashboard will filter products, customers and orders coming only from the  selected Region
 * The total amounts on the status bar were replaced with status charts
+* An Updates table in the dashboard showing the customer with most orders
 
 Last screenshot:
 <img src="last-screenshot.png" alt="screenshot">
