@@ -193,10 +193,12 @@ def customer(request, pk_test):
     # reset the orders variable wit the filter, depending on the GET request
     myFilter = OrderFilter(request.GET, queryset=orders)
     orders = myFilter.qs
+    # Sort the orders
+    orders = orders.order_by('-date_created')
     # Context to be passed to the template
     context = {
         'customer':customer,
-        'orders':orders,
+        'orders':orders[0:10],
         'customer_total_orders':customer_total_orders,
         'myFilter':myFilter     
     }
